@@ -1,4 +1,3 @@
-import './App.css'
 import './styles/global.css'
 
 export const App = ()=>{
