@@ -1,4 +1,4 @@
-import { ErrorException } from './error';
+import { ErrorException } from './Error';
 export class BadRequestException extends ErrorException {
   constructor(param: string) {
     super(`Bad Request Exception."${param}".`)
