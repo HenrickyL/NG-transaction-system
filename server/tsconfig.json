@@ -22,8 +22,8 @@
     "baseUrl": ".",
     "paths": {
       // "*": ["./"],
-      "@domain/*":      ["./app/domain/*"],
-      "@application/*": ["./app/application/*"],
+      "@model/*":      ["./app/Models/*"],
+      "@controller/*": ["./app/Controllers//*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
       // "@types/*":        ["./app/types/*"]

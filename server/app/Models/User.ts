@@ -1,7 +1,3 @@
-import { Entity } from "@infra/Entity";
-import { IUser } from "app/@types/models";
+import { User } from "@prisma/client";
 
-
-export class User extends Entity<IUser>{
-
-}
+export interface IUser extends User{} 
