@@ -14,22 +14,18 @@
     "pretty": true,
     "resolveJsonModule": true,
     "types": ["node"],
-    "typeRoots" : ["./node_modules/@types", "app/types"],
+    "typeRoots": ["./node_modules/@types", "./app/@types"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
     "strictPropertyInitialization": false,
+    "baseUrl": ".",
     "paths": {
-      "*": ["./"],
+      // "*": ["./"],
       "@domain/*":      ["./app/domain/*"],
       "@application/*": ["./app/application/*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
       "@types/*":        ["./app/@types/*"]
-
     }
-  },
-  "include": [
-    "app","config"
-  ]
+  }
 }
