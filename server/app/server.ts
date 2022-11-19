@@ -1,7 +1,7 @@
 import cors from 'cors'
 import express from 'express';
 import {createServer} from 'http'
-import { router } from './routes';
+import { router } from './infra/Routes';
 import {port} from '@config/auth'
 
 const api = express();

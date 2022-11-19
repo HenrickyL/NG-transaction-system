@@ -1,3 +1,3 @@
 import 'dotenv/config';
 
-import '@infra/http/server';
+import 'app/server';
