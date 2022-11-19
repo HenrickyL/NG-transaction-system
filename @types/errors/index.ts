@@ -1,9 +1,13 @@
-import { BadRequestException } from "./badRequest.error";
-import { ErrorException } from "./error";
-import { NotFountException } from "./notFound.error";
+import { ErrorException } from "./Error";
+import { BadRequestException } from "./BadRequestException";
+import { UnauthorizedException } from "./UnauthorizedException";
+import { NotFountException } from "./NotFountException";
+
+
 
 export {
   ErrorException,
   BadRequestException,
-  NotFountException
+  NotFountException,
+  UnauthorizedException
 }

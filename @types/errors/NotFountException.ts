@@ -1,4 +1,4 @@
-import { ErrorException } from './error';
+import { ErrorException } from '.';
 export class NotFountException extends ErrorException {
   constructor(param: string) {
     super(`Not Found Exception."${param}".`)
