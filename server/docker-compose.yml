@@ -6,18 +6,18 @@ networks:
       com.docker.network.bridge.enable_icc: "true"
 services:
   ng_transaction:
-    container_name: ng_transaction
+    container_name: '${DB_APP_NAME}'
     image: postgres:13
     restart: always
     networks:
       - postgres-network
     ports:
-      - '5432:5432'
+      - '${PORT}:${PORT}'
     environment:
-      - POSTGRES_USER=${postgres}
-      - POSTGRES_PASSWORD=${pw12345}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     expose:
-      - '5432'
+      - '${PORT}'
   # prisma:
   #   container_name: dockerprisma
   #   build: 
