@@ -1,4 +1,8 @@
-export default {
-  secret: process.env.APP_SECRET,
-  tokenExpiryTimeInSeconds: 10 * 60 
+const port = process.env.PORT
+const secret = process.env.APP_SECRET
+const tokenExpiryTimeInSeconds = 10 * 60 
+export {
+  port,
+  secret,
+  tokenExpiryTimeInSeconds
 };

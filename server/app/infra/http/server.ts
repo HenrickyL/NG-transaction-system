@@ -1,7 +1,7 @@
 import cors from 'cors'
 import express from 'express';
 import { router } from './routes';
-
+import {port} from '@config/auth'
 const server = express();
 
 server.use(
@@ -11,7 +11,7 @@ server.use(
 )
 server.use(express.json());
 server.use(router);
-const port = process.env.PORT || 3334
-server.listen( port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+const currentPort = port || 3334
+server.listen( currentPort, () => {
+  console.log(`Server running on http://localhost:${currentPort}`);
 });

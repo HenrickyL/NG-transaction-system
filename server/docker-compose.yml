@@ -5,7 +5,7 @@ networks:
     driver_opts:
       com.docker.network.bridge.enable_icc: "true"
 services:
-  ng_transaction:
+  postgress:
     container_name: '${DB_APP_NAME}'
     image: postgres:13
     restart: always
