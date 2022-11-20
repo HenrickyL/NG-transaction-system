@@ -1,3 +1,4 @@
+import 'dotenv/configure'
 const port = process.env.PORT;
 const domain = process.env.DOMAIN;
 

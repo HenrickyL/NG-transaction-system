@@ -2,6 +2,7 @@ import './styles/global.css'
 import axios from 'axios'
 import { useEffect } from 'react'
 import {port,domain} from './@types/auth'
+
 export default () => {
   useEffect(() => {
     axios
