@@ -3,5 +3,6 @@ WORKDIR /app
 COPY ./package*.json ./tsconfig.json ./
 RUN npm i
 COPY ./ ./
-EXPOSE 5000
-CMD [ "npm", "run", "dev" ]
+ARG PORT
+EXPOSE $PORT
+CMD [ "npm", "start"]

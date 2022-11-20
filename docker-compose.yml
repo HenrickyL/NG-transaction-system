@@ -36,8 +36,10 @@ services:
       container_name: 'api'
       restart: always
       build:
-        dockerfile: Dockerfile.dev
         context: './server'
+        dockerfile: Dockerfile.dev
+        args:
+          PORT: ${API_PORT}
       ports:
         - '${API_PORT}:${API_PORT}'
       volumes:
@@ -54,8 +56,10 @@ services:
       restart: always
       stdin_open: true
       build:
-        dockerfile: Dockerfile.dev
         context: ./web
+        dockerfile: Dockerfile.dev
+        args:
+          PORT: ${API_PORT}
       ports:
         - '${WEB_PORT}:${WEB_PORT}'
       volumes:
