@@ -3,8 +3,9 @@ import express from 'express';
 import {createServer} from 'http'
 import { router } from './Routes';
 import {port} from '@config/auth'
-import { UnauthorizedException } from './../../../../types/errors/UnauthorizedException';
-import { ErrorException } from 'types/errors';
+import {ErrorException} from 'types/errors'
+import { InvalidPasswordError } from 'app/Modules/user/useCases/errors/InvalidPasswordError';
+import { InvalidPasswordErrorsEnum } from 'types/enums';
 
 const api = express();
 const http = createServer(api)
@@ -19,7 +20,11 @@ api.set('port', currentPort);
 
 api.get('/',(req,res)=>{
   try{
-      throw new UnauthorizedException('aaaaa')
+      throw new InvalidPasswordError([
+        InvalidPasswordErrorsEnum['8 caracteres'],
+        InvalidPasswordErrorsEnum['one number']
+
+      ])
     return res.status(200).json({
       message: 'deu certo'
     })
@@ -27,7 +32,7 @@ api.get('/',(req,res)=>{
     if(e instanceof ErrorException)
       return res.status(e.code).json({
         type: e.type,
-        message: e.message
+        message: e.message,
       })
     else{
       return res.status(700).json({

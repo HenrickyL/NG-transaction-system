@@ -1,2 +1,2 @@
-import { BadRequestException } from "types/errors"
+import { BadRequestException } from "app/core/errors"
 

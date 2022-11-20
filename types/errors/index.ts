@@ -1,8 +1,5 @@
-import { BadRequestException } from "./BadRequestException";
-import { UnauthorizedException } from "./UnauthorizedException";
-import { NotFountException } from "./NotFountException";
 
-abstract class ErrorException extends Error {
+export abstract class ErrorException extends Error {
   protected _code : number
   constructor(param?: string) {
     super(param || `Internal Server Error.`)
@@ -17,9 +14,26 @@ abstract class ErrorException extends Error {
   }
 }
 
-export {
-  ErrorException,
-  BadRequestException,
-  NotFountException,
-  UnauthorizedException
+export class BadRequestException extends ErrorException {
+  constructor(param: string) {
+    super(param || `Bad Request Exception.`)
+    this.name = 'Bad Request Exception'
+    this._code = 400
+  }
+}
+
+export class NotFountException extends ErrorException {
+  constructor(param: string) {
+    super(param || `Not Found Exception.`)
+    this.name = 'NotFoundException'
+    this._code = 404
+  }
+}
+
+export class UnauthorizedException extends ErrorException {
+  constructor(param: string) {
+    super(param || `Unauthorized Exception.`)
+    this.name = 'UnauthorizedException'
+    this._code = 401
+  }
 }

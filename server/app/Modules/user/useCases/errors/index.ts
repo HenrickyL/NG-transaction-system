@@ -1,4 +1,4 @@
-import { BadRequestException } from "types/errors"
+import { BadRequestException } from "app/core/errors"
 
 export class InvalidUsernameLengthError extends BadRequestException {
   constructor(username: string) {
