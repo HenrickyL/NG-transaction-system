@@ -4,8 +4,8 @@ import {createServer} from 'http'
 import { router } from './Routes';
 import {port} from '@config/auth'
 import {ErrorException} from 'types/errors'
-import { InvalidPasswordError } from 'app/Modules/user/useCases/errors/InvalidPasswordError';
 import { InvalidPasswordErrorsEnum } from 'types/enums';
+import { InvalidPasswordError } from 'app/Modules/user/useCases/errors';
 
 const api = express();
 const http = createServer(api)
@@ -21,7 +21,7 @@ api.set('port', currentPort);
 api.get('/',(req,res)=>{
   try{
       throw new InvalidPasswordError([
-        InvalidPasswordErrorsEnum['8 caracteres'],
+        InvalidPasswordErrorsEnum['8 characters'],
         InvalidPasswordErrorsEnum['one number']
 
       ])
