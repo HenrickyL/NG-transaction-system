@@ -1,4 +1,15 @@
-import {HttpResponse} from './HttpResponse '
+interface HttpResponse<T> {
+  statusCode: number
+  body: T | null
+}
+
+
+export{
+  HttpResponse,
+  ok,
+  created,
+  noContent
+}
 
 function ok<T>(dto:T):HttpResponse<T>{
   return {
@@ -18,13 +29,4 @@ function noContent(): HttpResponse<undefined> {
     statusCode: 201,
     body: null,
   }
-}
-
-
-
-export{
-  HttpResponse,
-  ok,
-  created,
-  noContent
 }
