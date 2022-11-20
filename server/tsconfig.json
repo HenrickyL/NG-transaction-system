@@ -26,7 +26,7 @@
       "@controller/*": ["./app/Controllers//*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
-      "types/*":        ["app/_types/*"]
+      "types/*":        ["../types/*"]
     }
   }
 }
