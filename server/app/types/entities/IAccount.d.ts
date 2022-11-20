@@ -1,4 +1,4 @@
-import { IUser } from '.';
+import { IUser } from './IUser';
 
 export interface IAccount{
   balance: number
