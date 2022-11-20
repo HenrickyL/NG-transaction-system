@@ -3,9 +3,6 @@ import express from 'express';
 import {createServer} from 'http'
 import { router } from './Routes';
 import {port} from '@config/auth'
-import {ErrorException} from 'types/errors'
-import { InvalidPasswordErrorsEnum } from 'types/enums';
-import { InvalidPasswordError } from 'app/Modules/user/useCases/errors';
 
 const api = express();
 const http = createServer(api)
@@ -17,33 +14,11 @@ api.use(cors())
 api.use(router);
 api.set('port', currentPort);
 
-
-api.get('/',(req,res)=>{
-  try{
-      throw new InvalidPasswordError([
-        InvalidPasswordErrorsEnum['8 characters'],
-        InvalidPasswordErrorsEnum['one number']
-
-      ])
-    return res.status(200).json({
-      message: 'deu certo'
-    })
-  }catch(e){
-    if(e instanceof ErrorException)
-      return res.status(e.code).json({
-        type: e.type,
-        message: e.message,
-      })
-    else{
-      return res.status(700).json({
-        message: e.message
-      })
-    }
-  }
-  
+api.get('/', (req,res)=>{
+  return res.status(200).json({
+    status: 'online'
+  })
 })
-
-
 
 http.listen( currentPort, () => {
   console.log(`Server running on port ${currentPort}`);

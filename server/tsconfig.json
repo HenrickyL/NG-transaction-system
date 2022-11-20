@@ -23,6 +23,7 @@
     "paths": {
       // "*": ["./"],
       "@modules/*":     ["./app/Modules//*"],
+      "@core/*":        ["./app/core/*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
       "types/*":        ["../types/*"]

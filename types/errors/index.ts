@@ -6,7 +6,7 @@ export abstract class ErrorException extends Error {
     this.name = 'Internal Server Error'
     this._code = 500
   }
-  get code():number{
+  get statusCode():number{
     return this._code
   }
   get type():string{
