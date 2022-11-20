@@ -15,7 +15,7 @@
     "pretty": true,
     "resolveJsonModule": true,
     "types": ["node"],
-    "typeRoots": ["./node_modules/@types", "app/types/"],
+    "typeRoots": ["./node_modules/@types", "./app/@types/"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
@@ -26,7 +26,7 @@
       "@controller/*": ["./app/Controllers//*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
-      // "@types/*":        ["./app/types/*"]
+      "@types/*":        ["./app/@types/*"]
     }
   }
 }
