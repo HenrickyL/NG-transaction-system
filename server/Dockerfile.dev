@@ -5,5 +5,5 @@ RUN npm i
 COPY ./ ./
 ARG PORT
 EXPOSE $PORT
-RUN npm run studio
-CMD [ "npm", "start"]
+RUN npm run migrate
+CMD [ "npm", "run", "dev"]
