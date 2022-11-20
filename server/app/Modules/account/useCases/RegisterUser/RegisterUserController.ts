@@ -1,16 +1,15 @@
-import { Controller } from "app/core/infra/Controller";
+import { IController } from "app/core/infra/IController";
 import { RegisterUserRequest } from "types/DTOs";
 import { created, HttpResponse } from "types/HttpResponses";
-import { Users } from './../../domain/user/User';
 import { RegisterUser } from "./RegisterUser";
+import { UserResponse } from 'types/DTOs/userDTO';
 
-export class RegisterUserController implements Controller<Users> {
+export class RegisterUserController implements IController {
   constructor(
     private registerUser: RegisterUser
   ) {}
 
-  async handle(request: RegisterUserRequest): Promise<HttpResponse<Users>> {
-    try {
+  async handle(request: RegisterUserRequest): Promise<HttpResponse<UserResponse>> {
       const { username, password } = request
 
       const result = await this.registerUser.execute({
@@ -18,6 +17,6 @@ export class RegisterUserController implements Controller<Users> {
         password,
       })
 
-      return created<Users>()
+      return created<UserResponse>(result)
   }
 }
