@@ -1,8 +1,8 @@
-import { IUsersRepository } from "../repositories/IUsersRepository";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 import {RegisterUserRequest} from 'types/DTOs'
-import { Users } from "../domain/user/User";
-import { Username } from "../domain/user/Username";
-import { Password } from "../domain/user/Password";
+import { Users } from "../../domain/user/User";
+import { Username } from "../../domain/user/Username";
+import { Password } from "../../domain/user/Password";
 
 
 export class RegisterUser {

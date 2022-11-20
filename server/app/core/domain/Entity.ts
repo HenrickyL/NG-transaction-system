@@ -2,9 +2,9 @@
 export abstract class Entity<T>{
 
   protected readonly _id: string
-  protected readonly _createdAt: Date;
-  protected readonly _updatedAt?: Date;
-  protected readonly _prop: T;
+  protected  _createdAt: Date;
+  protected  _updatedAt?: Date;
+  protected  _prop: T;
 
 
   constructor(props: T) {

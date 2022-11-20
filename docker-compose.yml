@@ -12,10 +12,11 @@ services:
       networks:
         - postgres-network
       ports:
-        - '${PORT}:${PORT}'
+        - '${DB_PORT}:${DB_PORT}'
       environment:
         - POSTGRES_USER=${DB_USER}
         - POSTGRES_PASSWORD=${DB_PASSWORD}
+        - DATABASE_URL=${DATABASE_URL}
       expose:
         - '${PORT}'
 
@@ -34,42 +35,42 @@ services:
     #   environment:
     #     - PORT = ${PORT}
     
-    api:
-      container_name: 'api'
-      restart: always
-      build:
-        dockerfile: Dockerfile.dev
-        context: './server'
-      ports:
-        - '5000:5000'
-      volumes:
-        - /app/node_modules
-        - ./server:/app
-      environment:
-        - DB = ${DB}
-        - DB_NAME = ${DB_NAME}
-        - DB_VERSION = ${DB_VERSION}
-        - DB_USER = ${DB_USER}
-        - DB_PASSWORD = ${DB_PASSWORD}
-        - DB_APP_NAME = ${DB_APP_NAME}
-        - DOMAIN = ${DOMAIN}
-        - PORT = ${PORT}
-        - APP_SECRET= ${APP_SECRET}
+    # api:
+    #   container_name: 'api'
+    #   restart: always
+    #   build:
+    #     dockerfile: Dockerfile.dev
+    #     context: './server'
+    #   ports:
+    #     - '5000:5000'
+    #   volumes:
+    #     - /app/node_modules
+    #     - ./server:/app
+    #   environment:
+    #     - DB = ${DB}
+    #     - DB_NAME = ${DB_NAME}
+    #     - DB_VERSION = ${DB_VERSION}
+    #     - DB_USER = ${DB_USER}
+    #     - DB_PASSWORD = ${DB_PASSWORD}
+    #     - DB_APP_NAME = ${DB_APP_NAME}
+    #     - DOMAIN = ${DOMAIN}
+    #     - PORT = ${PORT}
+    #     - APP_SECRET= ${APP_SECRET}
    
 
-    web:
-      container_name: 'web'
-      restart: always
-      stdin_open: true
-      build:
-        dockerfile: Dockerfile.dev
-        context: ./web
-      ports:
-        - '3000:3000'
-      volumes:
-        - /app/node_modules
-      environment:
-        - DOMAIN = ${DOMAIN}
-        - PORT = ${PORT}
-        - APP_SECRET= ${APP_SECRET}
+    # web:
+    #   container_name: 'web'
+    #   restart: always
+    #   stdin_open: true
+    #   build:
+    #     dockerfile: Dockerfile.dev
+    #     context: ./web
+    #   ports:
+    #     - '3000:3000'
+    #   volumes:
+    #     - /app/node_modules
+    #   environment:
+    #     - DOMAIN = ${DOMAIN}
+    #     - PORT = ${PORT}
+    #     - APP_SECRET= ${APP_SECRET}
     
