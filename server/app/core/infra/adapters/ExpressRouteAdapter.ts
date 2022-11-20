@@ -22,7 +22,7 @@ export const adaptRoute = (controller: IController) => {
       }else{
         return response.status(500).json({
           type: 'InterError',
-          message: "...",
+          message: e,
         })
       }
     }

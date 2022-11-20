@@ -30,7 +30,7 @@ export class Users extends Entity<IUser> {
     this._updatedAt = date
   }
 
-  constructor(user: IUser) {
-    super(user)
+  constructor(user: IUser, id?:string) {
+    super(user,id)
   }
 }

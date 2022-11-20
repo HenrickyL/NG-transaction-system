@@ -9,7 +9,7 @@ export abstract class UserMapper {
         username: user.username,
         password: Password.create(user.password, true),
         accountId: user.accountId
-      })
+      }, user.id)
       current.updatedAt = user.updatedAt
       current.createdAt = user.createdAt
       return current

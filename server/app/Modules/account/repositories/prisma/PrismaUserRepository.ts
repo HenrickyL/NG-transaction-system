@@ -9,14 +9,15 @@ export class PrismaUsersRepository implements IUsersRepository {
     const userExists = await prisma.user.findUnique({
       where: { username: user.username },
     })
-    if(!userExists){
+    if(userExists){
       throw new UserAlreadyExistError(user.username);
     }
     const data = await UserMapper.toPersistence(user)
 
      const current =  await prisma.user.create({ data:{
-        username: user.username,
-        password: user.password.value
+        id: data.id,
+        username: data.username,
+        password: data.password
      } });
      return UserMapper.ToDomain(current)
   }
