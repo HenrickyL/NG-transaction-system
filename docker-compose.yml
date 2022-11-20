@@ -36,6 +36,7 @@ services:
     
     api:
       container_name: 'api'
+      restart: always
       build:
         dockerfile: Dockerfile.dev
         context: './server'
@@ -58,6 +59,7 @@ services:
 
     web:
       container_name: 'web'
+      restart: always
       stdin_open: true
       build:
         dockerfile: Dockerfile.dev
