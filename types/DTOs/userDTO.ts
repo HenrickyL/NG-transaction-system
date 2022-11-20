@@ -1,10 +1,5 @@
-export {
-  RegisterUserRequest
-}
 
-
-type RegisterUserRequest = {
+export type RegisterUserRequest = {
   username: string
   password: string
 }
-

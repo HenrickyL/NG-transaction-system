@@ -1,3 +1,1 @@
-export{
-
-}
+export {RegisterUserRequest} from  "./userDTO"

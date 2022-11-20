@@ -22,8 +22,7 @@
     "baseUrl": ".",
     "paths": {
       // "*": ["./"],
-      "@model/*":      ["./app/Models/*"],
-      "@controller/*": ["./app/Controllers//*"],
+      "@modules/*":     ["./app/Modules//*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
       "types/*":        ["../types/*"]
