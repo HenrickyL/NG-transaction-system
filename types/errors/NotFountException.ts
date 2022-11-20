@@ -1,7 +1,7 @@
 import { ErrorException } from '.';
 export class NotFountException extends ErrorException {
   constructor(param: string) {
-    super(`Not Found Exception."${param}".`)
+    super(param || `Not Found Exception.`)
     this.name = 'NotFoundException'
     this._code = 404
   }

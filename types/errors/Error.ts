@@ -1,11 +1,14 @@
 export class ErrorException extends Error {
-  protected _code : Number
-  constructor(param: string) {
-    super(`Internal Server Error."${param}".`)
+  protected _code : number
+  constructor(param?: string) {
+    super(param || `Internal Server Error.`)
     this.name = 'Internal Server Error'
     this._code = 500
   }
-  get code(){
+  get code():number{
     return this._code
+  }
+  get type():string{
+    return this.name
   }
 }

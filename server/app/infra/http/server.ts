@@ -3,6 +3,8 @@ import express from 'express';
 import {createServer} from 'http'
 import { router } from './Routes';
 import {port} from '@config/auth'
+import { UnauthorizedException } from './../../../../types/errors/UnauthorizedException';
+import { ErrorException } from 'types/errors';
 
 const api = express();
 const http = createServer(api)
@@ -16,9 +18,24 @@ api.set('port', currentPort);
 
 
 api.get('/',(req,res)=>{
- return res.status(200).json({
-    message: 'deu certo'
-  })
+  try{
+      throw new UnauthorizedException('aaaaa')
+    return res.status(200).json({
+      message: 'deu certo'
+    })
+  }catch(e){
+    if(e instanceof ErrorException)
+      return res.status(e.code).json({
+        type: e.type,
+        message: e.message
+      })
+    else{
+      return res.status(700).json({
+        message: e.message
+      })
+    }
+  }
+  
 })
 
 

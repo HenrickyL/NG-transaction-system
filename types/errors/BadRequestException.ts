@@ -1,7 +1,7 @@
 import { ErrorException } from './Error';
 export class BadRequestException extends ErrorException {
   constructor(param: string) {
-    super(`Bad Request Exception."${param}".`)
+    super(param || `Bad Request Exception.`)
     this.name = 'Bad Request Exception'
     this._code = 400
   }

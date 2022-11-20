@@ -1,7 +1,7 @@
 import { ErrorException } from '.';
 export class UnauthorizedException extends ErrorException {
   constructor(param: string) {
-    super(`Unauthorized Exception."${param}".`)
+    super(param || `Unauthorized Exception.`)
     this.name = 'UnauthorizedException'
     this._code = 401
   }
