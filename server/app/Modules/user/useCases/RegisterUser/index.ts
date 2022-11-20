@@ -1,8 +1,2 @@
-import { DomainError } from "app/core/domain/errors/DomainError"
+import { BadRequestException } from "types/errors"
 
-export class InvalidNameError extends Error implements DomainError {
-  constructor(name: string) {
-    super(`The name "${name}" is invalid.`)
-    this.name = 'InvalidNameError'
-  }
-}
