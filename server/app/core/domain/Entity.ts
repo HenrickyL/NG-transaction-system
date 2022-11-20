@@ -1,14 +1,14 @@
-import { IEntity } from "./IEntity";
 
-export abstract class Entity<T> implements IEntity<T>{
+export abstract class Entity<T>{
 
   protected readonly _id: string
   protected readonly _createdAt: Date;
   protected readonly _updatedAt?: Date;
-  public readonly _props: T
+  protected readonly _prop: T;
+
 
   constructor(props: T) {
-    this._props = props
+    this._prop = props
   }
 
   get id():string {
@@ -21,7 +21,7 @@ export abstract class Entity<T> implements IEntity<T>{
     return this._updatedAt
   }
   get props():T {
-    return this._props
+    return this._prop
   }
 
   public equals(object: Entity<T>): boolean {

@@ -4,10 +4,11 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "build-db": "docker-compose up",
+    "docker": "docker-compose up",
     "build": "tsc --project tsconfig.json",
     "dev": "tsnd --exit-child --clear -r tsconfig-paths/register main.ts",
-    "start": "node /dist/main.js",
+    "start": "migrate & dev",
+    "prod": "migrate & build & node /dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "npx prisma migrate dev",
     "generate": "npx prima generate",

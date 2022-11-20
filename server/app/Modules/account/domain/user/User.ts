@@ -1,9 +1,8 @@
 import { Entity } from "app/core/domain/Entity"
 import { IUser } from "types/entities"
-import { RegisterUserRequest } from 'types/DTOs';
 
 
-export class User extends Entity<IUser> {
+export class Users extends Entity<IUser> {
   get username() {
     return this.props.username
   }
@@ -11,7 +10,7 @@ export class User extends Entity<IUser> {
     return this.props.password
   }
 
-  constructor(props: IUser) {
-    super(props)
+  constructor(user: IUser) {
+    super(user)
   }
 }
