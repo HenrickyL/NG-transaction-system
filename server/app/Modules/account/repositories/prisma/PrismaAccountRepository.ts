@@ -2,11 +2,13 @@
 import { IAccount } from 'types/entities';
 import { IAccountRepository} from '../IAccountRepository'
 import { prisma } from '@infra/prisma';
-import { AccountAlreadyExistError } from '@modules/user/useCases/RegisterUser/errors';
 import { AccountMapper } from './../../mapper/AccountMapper';
+import { AccountAlreadyExistError } from '@modules/useCases/RegisterUser/errors';
 
 export class AccountRepository  implements IAccountRepository{
   constructor(private mapper: AccountMapper){}
+  
+  
   async create(account: IAccount): Promise<IAccount> {
     const exist = await prisma.account.findUnique({
       where: { id: account.id },

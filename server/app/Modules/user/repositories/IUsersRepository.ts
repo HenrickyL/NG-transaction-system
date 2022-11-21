@@ -1,4 +1,3 @@
-import { Users } from "../domain/Users";
 import { IUser } from 'types/entities';
 
 export interface IUsersRepository {
