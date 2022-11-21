@@ -1,15 +1,22 @@
 import { IMapper } from "@core/infra/IMapper";
 import { Account } from "@prisma/client";
-import { Accounts } from './../domain/Accounts';
 import {AccountResponse} from "types/DTOs/accountDTO"
-export class AccountMapper implements IMapper<Accounts, Account,AccountResponse>{
-  toEntity(model: Account): Accounts {
+import { IAccount } from 'types/entities';
+
+
+export class AccountMapper implements IMapper<IAccount, Account,AccountResponse>{
+  toEntity(model: Account): IAccount {
     throw new Error("Method not implemented.");
   }
-  toModel(entity: Accounts): Promise<Account> {
-    throw new Error("Method not implemented.");
+  async toModel(entity: IAccount): Promise<Account> {
+    return {
+      id:entity.id,
+      balance: entity.balance,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt
+    }
   }
-  toResponse(entity: Accounts): AccountResponse {
+  toResponse(entity: IAccount): AccountResponse {
     return {
       id: entity.id,
       balance: entity.balance

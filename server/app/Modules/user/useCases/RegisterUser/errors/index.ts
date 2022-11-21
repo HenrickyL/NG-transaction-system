@@ -1,4 +1,4 @@
-import { BadRequestException } from "types/errors"
+import { BadRequestException, ErrorException } from "types/errors"
 import { InvalidPasswordErrorsEnum } from "types/enums"
 
 export class InvalidUsernameLengthError extends BadRequestException {
@@ -21,5 +21,12 @@ export class UserAlreadyExistError extends BadRequestException {
   constructor(username: string) {
     super(`The username '${username}' already exists.`)
     this.name = 'UserAlreadyExistError'
+  }
+}
+
+export class AccountAlreadyExistError extends ErrorException {
+  constructor(id: string) {
+    super(`The with id '${id}' already exists.`)
+    this.name = 'AccountAlreadyExistError'
   }
 }

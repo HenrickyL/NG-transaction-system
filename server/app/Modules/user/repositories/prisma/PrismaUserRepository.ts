@@ -27,7 +27,6 @@ export class PrismaUsersRepository implements IUsersRepository {
     const data = await this.mapper.toModel(user)
 
      const current =  await prisma.user.create({ data:{
-        id: data.id,
         username: data.username,
         password: data.password
      } });
