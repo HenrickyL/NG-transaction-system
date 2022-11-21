@@ -1,1 +1,3 @@
-export {RegisterUserRequest} from  "./userDTO"
+export type EnsureAuthenticatedMiddlewareRequest = {
+  accessToken: string
+}

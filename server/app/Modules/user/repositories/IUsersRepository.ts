@@ -1,4 +1,4 @@
-import { Users } from "../domain/user/User"
+import { Users } from "../User";
 
 export interface IUsersRepository {
   // exists(email: string): Promise<boolean>
