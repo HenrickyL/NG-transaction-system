@@ -26,7 +26,7 @@
       "@core/*":        ["./app/core/*"],
       "@infra/*":       ["./app/infra/*"],
       "@config/*":      ["./config/*"],
-      "types/*":        ["../types/*"]
+      "types/*":        ["./types/*"]
     }
   }
 }

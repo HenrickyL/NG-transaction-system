@@ -4,7 +4,7 @@ import { makeRegisterUserController } from "../factories/RegisterUserControllerF
 
 
 const usersRouter = express.Router()
-
+console.log(' UserRouter :')
 usersRouter.post('/', adaptRoute(makeRegisterUserController()))
 
 export { usersRouter }

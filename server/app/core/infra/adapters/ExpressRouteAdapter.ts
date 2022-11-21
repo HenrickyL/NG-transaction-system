@@ -1,10 +1,11 @@
 import { Request, Response } from "express"
+import { ErrorException } from "types/errors"
 import { IController } from "../IController"
-import { ErrorException } from 'types/errors';
-import { UserResponse } from "types/DTOs/userDTO";
 
 export const adaptRoute = (controller: IController) => {
-  return async (request: Request<UserResponse>, response: Response) => {
+  console.log(' Adapter :')
+
+  return async (request: Request, response: Response) => {
     const requestData = {
       ...request.body,
       ...request.params,

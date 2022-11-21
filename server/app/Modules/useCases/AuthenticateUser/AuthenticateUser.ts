@@ -4,26 +4,26 @@ import { AuthenticateUserRequest } from "types/DTOs/userDTO";
 import { InvalidEmailOrPasswordError } from "./errors";
 
 export class AuthenticateUser {
-  constructor(private usersRepository: IUsersRepository) {}
+  // constructor(private usersRepository: IUsersRepository) {}
 
-  async execute({
-    username,
-    password,
-  }: AuthenticateUserRequest): Promise<AuthenticatedResponse> {
-    const user = await this.usersRepository.findByUsername(username)
+  // async execute({
+  //   username,
+  //   password,
+  // }: AuthenticateUserRequest): Promise<AuthenticatedResponse> {
+  //   const user = await this.usersRepository.findByUsername(username)
 
-    if (!user) {
-      throw new InvalidEmailOrPasswordError()
-    }
+  //   if (!user) {
+  //     throw new InvalidEmailOrPasswordError()
+  //   }
 
-    const isPasswordValid = await user.password.comparePassword(password)
+  //   const isPasswordValid = await user.password.comparePassword(password)
 
-    if (isPasswordValid === false) {
-      throw new InvalidEmailOrPasswordError()
-    }
+  //   if (isPasswordValid === false) {
+  //     throw new InvalidEmailOrPasswordError()
+  //   }
 
-    const { token } = JWT.signUser(user)
+  //   const { token } = JWT.signUser(user)
 
-    return token
-  }
+  //   return token
+  // }
 }

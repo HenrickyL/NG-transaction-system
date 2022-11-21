@@ -6,7 +6,7 @@ import {port} from '@config/auth'
 
 const api = express();
 const http = createServer(api)
-const currentPort = port || 3333
+const currentPort = port || 5001
 
 api.use(express.urlencoded({ extended : true }))
 api.use(express.json());

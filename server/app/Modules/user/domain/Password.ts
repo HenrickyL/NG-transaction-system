@@ -1,6 +1,6 @@
 import { InvalidPasswordErrorsEnum } from 'types/enums';
 import bcrypt from 'bcryptjs'
-import { InvalidPasswordError } from '../useCases/RegisterUser/errors';
+import { InvalidPasswordError } from '@modules/useCases/RegisterUser/errors';
 
 
 export class Password{

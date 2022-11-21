@@ -4,8 +4,8 @@ import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { RegisterUserRequest, UserResponse } from "types/DTOs/userDTO";
 import { IUsersRepository } from "@modules/user/repositories/IUsersRepository";
 import { IAccountRepository } from './../../account/repositories/IAccountRepository';
-import { IUser } from './../../../../../types/entities/IUser.d';
-import { IAccount } from './../../../../../types/entities/IAccount.d';
+import { IAccount, IUser } from "types/entities";
+
 
 export class RegisterUser {
   constructor(
@@ -16,6 +16,8 @@ export class RegisterUser {
 
   async execute({username,password,}: RegisterUserRequest): Promise<UserResponse> 
   {
+    console.log(' Register :')
+
     const usernameValid = Username.create(username)
     const passwordValid:Password = Password.create(password)
 
