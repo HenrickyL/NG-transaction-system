@@ -1,14 +1,15 @@
 import { prisma } from "@infra/prisma";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { UserAlreadyExistError } from "@modules/user/useCases/RegisterUser/errors";
-import { Users } from "@modules/user/domain/Users";
+import { IUser } from "types/entities";
 
 import { IUsersRepository } from "../IUsersRepository";
 
 export class PrismaUsersRepository implements IUsersRepository {
   constructor(private mapper: UserMapper){}
 
-  async findByUsername(username: string): Promise<Users> {
+
+  async findByUsername(username: string): Promise<IUser> {
     const user = await prisma.user.findUnique({
       where:{ username}
     })
@@ -16,7 +17,7 @@ export class PrismaUsersRepository implements IUsersRepository {
     return this.mapper.toEntity(user)
   }
 
-  async create(user: Users): Promise<Users> {
+  async create(user: IUser): Promise<IUser> {
     const userExists = await prisma.user.findUnique({
       where: { username: user.username },
     })

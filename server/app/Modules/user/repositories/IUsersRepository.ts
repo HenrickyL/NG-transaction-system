@@ -1,8 +1,9 @@
 import { Users } from "../domain/Users";
+import { IUser } from 'types/entities';
 
 export interface IUsersRepository {
   // exists(email: string): Promise<boolean>
   // save(user: User): Promise<void>
-  create(user: Users): Promise<Users>
-  findByUsername(username: string): Promise<Users>
+  create(user: IUser): Promise<IUser>
+  findByUsername(username: string): Promise<IUser>
 }
