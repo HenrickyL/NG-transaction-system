@@ -1,7 +1,7 @@
 import { prisma } from "@infra/prisma";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { UserAlreadyExistError } from "@modules/user/useCases/RegisterUser/errors";
-import { Users } from "@modules/user/domain/User";
+import { Users } from "@modules/user/domain/Users";
 
 import { IUsersRepository } from "../IUsersRepository";
 

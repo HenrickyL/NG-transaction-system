@@ -22,7 +22,11 @@ export class Users extends Entity<IUser>{
     return this._account
   }
 
-  constructor(user: IUser) {
-    super(user)
+  constructor(props: IUser) {
+    super(props)
+    this._username = props.username
+    this._password = props.password
+    this._accountId = props.accountId
+    this._account = props.account
   }
 }

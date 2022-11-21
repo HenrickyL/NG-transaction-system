@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { UserResponse } from "types/DTOs/userDTO";
 import { Password } from "../domain/Password";
-import { Users } from "../domain/User";
+import { Users } from "../domain/Users";
 
 export abstract class UserMapper {
   static ToDomain(user: User): Users {
