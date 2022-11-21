@@ -6,10 +6,10 @@ import { RegisterUserRequest, UserResponse } from "types/DTOs/userDTO";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 
-
 export class RegisterUser {
   constructor(
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    private mapper: UserMapper
     ) {}
 
   async execute({username,password,}: RegisterUserRequest): Promise<UserResponse> 
@@ -22,6 +22,6 @@ export class RegisterUser {
       password: passwordValid
     }) 
     const res = await this.usersRepository.create(user)
-    return UserMapper.toResponse(res)
+    return this.mapper.toResponse(res)
   }
 }

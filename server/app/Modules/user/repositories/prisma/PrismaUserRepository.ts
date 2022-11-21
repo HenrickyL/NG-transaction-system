@@ -12,7 +12,7 @@ export class PrismaUsersRepository implements IUsersRepository {
       where:{ username}
     })
     if(!user) return null
-    return UserMapper.ToDomain(user)
+    return UserMapper.ToEntity(user)
   }
 
   async create(user: Users): Promise<Users> {
@@ -22,13 +22,13 @@ export class PrismaUsersRepository implements IUsersRepository {
     if(userExists){
       throw new UserAlreadyExistError(user.username);
     }
-    const data = await UserMapper.toPersistence(user)
+    const data = await UserMapper.toModel(user)
 
      const current =  await prisma.user.create({ data:{
         id: data.id,
         username: data.username,
         password: data.password
      } });
-     return UserMapper.ToDomain(current)
+     return UserMapper.ToEntity(current)
   }
 }

@@ -21,7 +21,6 @@ export class Users extends Entity<IUser>{
   get account() {
     return this._account
   }
-
   constructor(props: IUser) {
     super(props)
     this._username = props.username

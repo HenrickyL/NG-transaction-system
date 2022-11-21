@@ -1,37 +1,38 @@
+import { IMapper } from "@core/infra/IMapper";
 import { User } from "@prisma/client";
 import { UserResponse } from "types/DTOs/userDTO";
 import { Password } from "../domain/Password";
 import { Users } from "../domain/Users";
 
-export abstract class UserMapper {
-  static ToDomain(user: User): Users {
-      const current = new Users({
-        id: user.id,
-        username: user.username,
-        password: Password.create(user.password, true),
-        accountId: user.accountId,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt
-      })
-      return current
+
+export class UserMapper implements IMapper<Users, User, UserResponse>{
+  toEntity(model: User): Users {
+    const current = new Users({
+      id: model.id,
+      username: model.username,
+      password: Password.create(model.password, true),
+      accountId: model.accountId,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt
+    })
+    return current
   }
-  static async toPersistence(user: Users): Promise<User> {
+  async toModel(entity: Users): Promise<User> {
     return {
-      id: user.id,
-      username: user.username,
-      accountId: user.accountId,
-      password: await user.password.getHashedValue(),
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      id: entity.id,
+      username: entity.username,
+      accountId: entity.accountId,
+      password: await entity.password.getHashedValue(),
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt
     }
   }
-
-  static toResponse(user: Users): UserResponse{
+  toResponse(entity: Users): UserResponse {
     return {
-      id: user.id,
-      username: user.username,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt
+      id: entity.id,
+      username: entity.username,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt
     }
   }
 }
