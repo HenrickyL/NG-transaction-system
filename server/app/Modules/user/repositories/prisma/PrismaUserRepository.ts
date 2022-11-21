@@ -1,13 +1,12 @@
 import { prisma } from "@infra/prisma";
+import { UserAlreadyExistError } from "@modules/useCases/RegisterUser/errors";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
-import { UserAlreadyExistError } from "@modules/user/useCases/RegisterUser/errors";
 import { IUser } from "types/entities";
 
 import { IUsersRepository } from "../IUsersRepository";
 
 export class PrismaUsersRepository implements IUsersRepository {
   constructor(private mapper: UserMapper){}
-
 
   async findByUsername(username: string): Promise<IUser> {
     const user = await prisma.user.findUnique({
