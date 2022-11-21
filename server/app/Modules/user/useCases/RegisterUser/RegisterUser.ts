@@ -1,7 +1,7 @@
 import { Password } from "@modules/user/domain/Password";
 import { Username } from "@modules/user/domain/Username";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
-import { Users } from "@modules/user/User";
+import { Users } from "@modules/user/domain/User";
 import { RegisterUserRequest, UserResponse } from "types/DTOs/userDTO";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 

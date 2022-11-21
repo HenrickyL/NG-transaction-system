@@ -1,6 +1,6 @@
 import { IUser } from './IUser';
-
-export interface IAccount{
+import {IEntity} from '.'
+export interface IAccount extends IEntity{
   balance: number
   user?: IUser
 }

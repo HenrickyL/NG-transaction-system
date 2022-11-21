@@ -1,8 +1,7 @@
 import { IController } from "app/core/infra/IController";
-import { RegisterUserRequest } from "types/DTOs";
 import { created, HttpResponse } from "types/HttpResponses";
 import { RegisterUser } from "./RegisterUser";
-import { UserResponse } from 'types/DTOs/userDTO';
+import { RegisterUserRequest, UserResponse } from 'types/DTOs/userDTO';
 
 export class RegisterUserController implements IController {
   constructor(

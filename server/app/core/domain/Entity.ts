@@ -1,30 +1,29 @@
 
-import {v4 as uuid} from 'uuid'
+// import {v4 as uuid} from 'uuid'
+import { IEntity } from "types/entities";
+
+
 export abstract class Entity<T>{
 
-  protected readonly _id: string
-  protected  _createdAt: Date;
+  protected readonly _id?: string
+  protected  _createdAt?: Date;
   protected  _updatedAt?: Date;
-  protected  _prop: T;
 
 
-  constructor(props: T, id?: string) {
-
-    this._id = id || uuid()
-    this._prop = props
+  constructor(props: IEntity) {
+    this._id = props.id
+    this._createdAt = props.createdAt
+    this._updatedAt = props.updatedAt
   }
 
-  get id():string {
+  get id():string | undefined {
     return this._id
   }
-  get createdAt():Date {
+  get createdAt():Date | undefined {
     return this._createdAt
   }
-  get updatedAt(): Date {
+  get updatedAt(): Date | undefined {
     return this._updatedAt
-  }
-  get props():T {
-    return this._prop
   }
 
   public equals(object: Entity<T>): boolean {
@@ -36,12 +35,12 @@ export abstract class Entity<T>{
       return true
     }
 
-    if (!(object instanceof Entity)) {
+    if (!(object instanceof Entity<T>)) {
       return false
     }
 
     return this._id === object._id
   }
 
-
 }
+

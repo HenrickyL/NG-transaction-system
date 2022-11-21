@@ -10,3 +10,8 @@ export type UserResponse = {
   createdAt: Date
   updatedAt?: Date
 }
+
+export type AuthenticateUserRequest = {
+  username: string
+  password: string
+}

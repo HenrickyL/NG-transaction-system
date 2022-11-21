@@ -1,8 +1,9 @@
 import { IAccount } from './IAccount';
-
-export interface ITransaction{
+import {IEntity} from '.'
+export interface ITransaction extends IEntity{
   value: number
   debitedAccountId: string
+  creditedAccountId: string
   debitedAccount?:    IAccount  
   creditedAccount?:   IAccount
 }
