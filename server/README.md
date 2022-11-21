@@ -1,4 +1,8 @@
-<style> r { color: Red } b { color: Blue } gr { color: Green }  g { color: Gray } </style>
+<style> 
+
+  r { color: Red } b { color: Blue } gr { color: Green }  g { color: Gray } 
+
+</style>
 
 
 
@@ -13,6 +17,7 @@
 ## Use Cases:
 
 - **Qualquer pessoa deverá poder fazer parte da NG. Para isso, basta realizar o** <r>**cadastro**</r> **informando *username* e *password*.**
+- 
   -[x] <g>Deve-se garantir que cada *username* seja **único** e composto por, pelo menos, 3 caracteres.</g>
   -[x] <g>Deve-se garantir que a *password* seja composta por pelo menos 8 caracteres, um número e uma letra maiúscula. Lembre-se que ela deverá ser ***hashada*** ao ser armazenada no banco.</g>
   -[x] <g>Durante o processo de cadastro de um novo usuário, sua respectiva **conta** deverá ser **criada** automaticamente na tabela **Accounts** com um *balance* de **R$ 100,00**. É importante ressaltar que caso ocorra algum problema e o usuário não seja criado,  a tabela **Accounts** não deverá ser afetada.</g>
