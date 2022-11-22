@@ -15,3 +15,13 @@ export type AuthenticateUserRequest = {
   username: string
   password: string
 }
+
+export interface AuthData {
+  userId: string
+  token: string
+}
+
+export interface AuthTokenPayload {
+  exp: number
+  sub: string
+}
