@@ -8,6 +8,10 @@ export abstract class Username{
     if (!this.validate(name)) {
       throw new InvalidUsernameLengthError(name);
     }
-    return name;
+    return this.format(name);
+  }
+
+  static format(username:string):string{
+    return username.toLocaleLowerCase()
   }
 }

@@ -5,9 +5,10 @@ import { RegisterUserRequest, UserResponse } from "types/DTOs/userDTO";
 import { IUsersRepository } from "@modules/user/repositories/IUsersRepository";
 import { IAccountRepository } from '../../../account/repositories/IAccountRepository';
 import { IAccount, IUser } from "types/entities";
+import { IUseCase } from './../../../../core/infra/IUseCase';
 
 
-export class RegisterUser {
+export class RegisterUser implements IUseCase<RegisterUserRequest, UserResponse>{
   constructor(
     private usersRepository: IUsersRepository,
     private accountRepository: IAccountRepository,
