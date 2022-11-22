@@ -29,6 +29,7 @@
   - [x] <g>Durante o processo de cadastro de um novo usuário, sua respectiva **conta** deverá ser **criada** automaticamente na tabela **Accounts** com um *balance* de **R$ 100,00**. É importante ressaltar que caso ocorra algum problema e o usuário não seja criado,  a tabela **Accounts** não deverá ser afetada.</g>
   
 * **Todo usuário deverá conseguir** **<r>LOGAR</r>** **na aplicação informando *username* e *password.* Caso o login seja bem-sucedido, um token JWT (com 24h de validade) deverá ser fornecido.**
+  - [x] Autentificação
 
 
 * **Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de** **<r>VISUZALIZAR</r>** **seu próprio *balance* atual.**
