@@ -11,20 +11,17 @@ type DecodedJwt = {
 }
 export class EnsureAuthenticatedMiddleware <T>implements Middleware {
   handle(request: AuthenticatedMiddlewareRequest): HttpResponse{
-    const { authorization } = request
-    const accessToken = authorization.split(' ')[1]
-    console.log({
-      authorization,
-      accessToken
-    })
-    if (accessToken) {
+    const { accessToken,authorization } = request
+    const token = accessToken || authorization.split(' ')[1]
+   
+    if (token) {
       try{
         console.log('.')
-        const decoded = decode(accessToken) as DecodedJwt
+        const decoded = decode(token) as DecodedJwt
         
         return ok<AuthData>({
           userId: decoded.sub,
-          token: accessToken
+          token
         })
       }catch(e){
         console.log(e)
