@@ -41,7 +41,7 @@ export class PrismaUsersRepository implements IUsersRepository {
 
   async findByUsername(username: string): Promise<IUser> {
     const user = await prisma.user.findUnique({
-      where:{ username}
+      where:{ username: username.toLocaleLowerCase()}
     })
     if(!user) return null
     return this.mapper.toEntity(user)
