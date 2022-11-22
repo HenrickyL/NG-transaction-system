@@ -1,5 +1,5 @@
 import { prisma } from "@infra/prisma";
-import { UserAlreadyExistError } from "@modules/useCases/RegisterUser/errors";
+import { UserAlreadyExistError } from "app/useCases/RegisterUser/errors";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { IUser } from "types/entities";
 

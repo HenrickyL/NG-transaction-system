@@ -2,17 +2,17 @@ import cors from 'cors'
 import express from 'express';
 import {createServer} from 'http'
 import { router } from './Routes';
-import {port} from '@config/auth'
+import {auth} from '@config/auth'
 
 const api = express();
 const http = createServer(api)
-const currentPort = port || 5001
+const port = auth.port || 5000
 
 api.use(express.urlencoded({ extended : true }))
 api.use(express.json());
 api.use(cors())
 api.use(router);
-api.set('port', currentPort);
+api.set('port', port);
 
 api.get('/', (req,res)=>{
   return res.status(200).json({
@@ -20,6 +20,6 @@ api.get('/', (req,res)=>{
   })
 })
 
-http.listen( currentPort, () => {
-  console.log(`Server running on port ${currentPort}`);
+http.listen( port, () => {
+  console.log(`Server running on port ${port}`);
 });

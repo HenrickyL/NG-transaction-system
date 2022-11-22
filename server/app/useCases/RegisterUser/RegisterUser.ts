@@ -3,7 +3,7 @@ import { Username } from "@modules/user/domain/Username";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { RegisterUserRequest, UserResponse } from "types/DTOs/userDTO";
 import { IUsersRepository } from "@modules/user/repositories/IUsersRepository";
-import { IAccountRepository } from './../../account/repositories/IAccountRepository';
+import { IAccountRepository } from '../../Modules/account/repositories/IAccountRepository';
 import { IAccount, IUser } from "types/entities";
 
 
