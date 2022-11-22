@@ -3,10 +3,10 @@ import { PrismaUsersRepository } from "@modules/user/repositories/prisma/PrismaU
 
 import { IController } from "app/core/infra/IController"
 import { UserMapper } from '@modules/user/mapper/UserMapper';
-import { RegisterUser} from 'app/useCases/RegisterUser/RegisterUser'
+import { RegisterUser} from '@modules/user/useCases/RegisterUser/RegisterUser'
 import { PrismaAccountRepository} from "@modules/account/repositories/prisma/PrismaAccountRepository";
 import { AccountMapper } from "@modules/account/mapper/AccountMapper";
-import { RegisterUserController } from "app/useCases/RegisterUser/RegisterUserController";
+import { RegisterUserController } from "@modules/user/useCases/RegisterUser/RegisterUserController";
 
 export function makeRegisterUserController(): IController {
   const userMapper = new UserMapper()

@@ -3,7 +3,7 @@ import { Middleware } from "@core/infra/Middleware";
 import { AuthenticatedMiddlewareRequest } from "types/DTOs";
 import { HttpResponse, ok } from "types/HttpResponses";
 import { AuthData } from 'types/DTOs/userDTO';
-import { AccessDeniedError } from 'app/useCases/AuthenticateUser/errors';
+import { AccessDeniedError } from '@modules/user/useCases/AuthenticateUser/errors';
 
 
 type DecodedJwt = {

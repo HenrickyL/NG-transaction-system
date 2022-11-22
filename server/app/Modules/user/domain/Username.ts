@@ -1,4 +1,4 @@
-import { InvalidUsernameLengthError } from "app/useCases/RegisterUser/errors";
+import { InvalidUsernameLengthError } from "@modules/user/useCases/RegisterUser/errors";
 
 export abstract class Username{
   private static validate(name: string): boolean {

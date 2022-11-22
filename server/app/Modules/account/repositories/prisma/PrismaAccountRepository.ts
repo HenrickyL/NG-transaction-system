@@ -3,7 +3,7 @@ import { IAccount } from 'types/entities';
 import { IAccountRepository} from '../IAccountRepository'
 import { prisma } from '@infra/prisma';
 import { AccountMapper } from './../../mapper/AccountMapper';
-import { AccountAlreadyExistError } from 'app/useCases/RegisterUser/errors';
+import { AccountAlreadyExistError } from '@modules/user/useCases/RegisterUser/errors';
 
 export class PrismaAccountRepository  implements IAccountRepository{
   constructor(private mapper: AccountMapper){}

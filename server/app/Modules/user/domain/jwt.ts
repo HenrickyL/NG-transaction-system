@@ -1,4 +1,4 @@
-import { InvalidJWTTokenError } from 'app/useCases/AuthenticateUser/errors';
+import { InvalidJWTTokenError } from '@modules/user/useCases/AuthenticateUser/errors';
 import { sign, verify } from 'jsonwebtoken'
 import { AuthData } from 'types/DTOs/userDTO'
 import { AuthTokenPayload } from 'types/DTOs/userDTO';

@@ -1,7 +1,7 @@
 import { PrismaUsersRepository } from "@modules/user/repositories/prisma/PrismaUserRepository"
-import { AuthenticateUser } from "app/useCases/AuthenticateUser/AuthenticateUser"
+import { AuthenticateUser } from "@modules/user/useCases/AuthenticateUser/AuthenticateUser"
 import { UserMapper } from '@modules/user/mapper/UserMapper';
-import AuthenticateUserController from "app/useCases/AuthenticateUser/AuthenticateUserController";
+import AuthenticateUserController from "@modules/user/useCases/AuthenticateUser/AuthenticateUserController";
 import { IController } from 'app/core/infra/IController';
 
 export function makeAuthenticateUserController(): IController {
