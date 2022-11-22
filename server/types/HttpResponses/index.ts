@@ -1,4 +1,4 @@
-interface HttpResponse<T> {
+interface HttpResponse<T = any> {
   statusCode: number
   body: T | null
 }
