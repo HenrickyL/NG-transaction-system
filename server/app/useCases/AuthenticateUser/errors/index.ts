@@ -1,4 +1,4 @@
-import { BadRequestException } from 'types/errors';
+import { BadRequestException, UnauthorizedException } from 'types/errors';
 
 export class InvalidEmailOrPasswordError extends BadRequestException{
   constructor() {
@@ -11,5 +11,12 @@ export class InvalidJWTTokenError extends BadRequestException {
   constructor() {
     super(`The JWT token is invalid.`)
     this.name = 'InvalidJWTTokenError'
+  }
+}
+
+export class AccessDeniedError extends UnauthorizedException {
+  constructor() {
+    super(`Access denied.`)
+    this.name = 'AccessDeniedError'
   }
 }

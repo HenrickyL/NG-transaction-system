@@ -1,5 +1,6 @@
 export type AuthenticatedMiddlewareRequest = {
-  accessToken: string
+  accessToken: string,
+  authorization: string
 }
 
 
