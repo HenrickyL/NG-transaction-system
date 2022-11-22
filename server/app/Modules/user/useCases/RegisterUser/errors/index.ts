@@ -1,5 +1,6 @@
 import { BadRequestException, ErrorException } from "types/errors"
 import { InvalidPasswordErrorsEnum } from "types/enums"
+import { NotFountException } from './../../../../../../types/errors/index';
 
 export class InvalidUsernameLengthError extends BadRequestException {
   constructor(username: string) {
@@ -24,9 +25,16 @@ export class UserAlreadyExistError extends BadRequestException {
   }
 }
 
+export class UserNotFound extends NotFountException {
+  constructor(id: string) {
+    super(`The user with id '${id}' not found.`)
+    this.name = 'UserNotFound'
+  }
+}
+
 export class AccountAlreadyExistError extends ErrorException {
   constructor(id: string) {
-    super(`The with id '${id}' already exists.`)
+    super(`The Account with id '${id}' already exists.`)
     this.name = 'AccountAlreadyExistError'
   }
 }

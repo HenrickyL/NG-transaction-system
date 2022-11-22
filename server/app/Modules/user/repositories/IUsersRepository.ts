@@ -5,4 +5,5 @@ export interface IUsersRepository {
   // save(user: User): Promise<void>
   create(user: IUser): Promise<IUser>
   findByUsername(username: string): Promise<IUser>
+  findById(id: string): Promise<IUser>
 }

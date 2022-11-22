@@ -7,6 +7,19 @@ import { AccountAlreadyExistError } from '@modules/user/useCases/RegisterUser/er
 
 export class PrismaAccountRepository  implements IAccountRepository{
   constructor(private mapper: AccountMapper){}
+
+
+  async findById(accountId: string): Promise<IAccount> {
+    const account = await prisma.account.findUnique({
+      where:{ id: accountId}
+    })
+    if(!account){
+      throw new AccountAlreadyExistError(accountId)
+    }
+    return this.mapper.toEntity(account)
+  }
+
+ 
   
   
   async create(account: IAccount): Promise<IAccount> {
