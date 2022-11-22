@@ -7,6 +7,26 @@ import { IUsersRepository } from "../IUsersRepository";
 
 export class PrismaUsersRepository implements IUsersRepository {
   constructor(private mapper: UserMapper){}
+
+
+  async updateById(id: string, user: IUser): Promise<IUser> {
+    const current = await prisma.user.findUnique({
+      where: { id }, 
+    })
+    if(!current){
+      throw new UserNotFound(id);
+    }
+
+    const res = await prisma.user.update({
+      data: {
+        username: user.username,
+        accountId:user.accountId,
+        password: user.password,
+      },
+      where:{id}
+    })
+    return this.mapper.toEntity(res)
+  }
   
   async findById(id: string): Promise<IUser> {
     const user = await prisma.user.findUnique({

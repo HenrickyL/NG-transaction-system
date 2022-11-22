@@ -26,10 +26,12 @@ export class RegisterUser implements IUseCase<RegisterUserRequest, UserResponse>
       password: passwordValid
     }
     const res = await this.usersRepository.create(user);
-    const account:IAccount = {
+    const iaccount:IAccount = {
       balance: 100
     }
-    this.accountRepository.create(account)
+    const account = await this.accountRepository.create(iaccount)
+    user.accountId = account.id
+    await this.usersRepository.updateById(user.id,user)
     return this.mapper.toResponse(res)
   }
 }
