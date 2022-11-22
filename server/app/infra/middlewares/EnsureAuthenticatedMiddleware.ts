@@ -15,17 +15,12 @@ export class EnsureAuthenticatedMiddleware <T>implements Middleware {
     const token = accessToken || authorization.split(' ')[1]
    
     if (token) {
-      try{
-        console.log('.')
         const decoded = decode(token) as DecodedJwt
         
         return ok<AuthData>({
           userId: decoded.sub,
           token
         })
-      }catch(e){
-        console.log(e)
-      }
     }
 
     throw new AccessDeniedError();

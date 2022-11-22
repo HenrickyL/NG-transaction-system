@@ -26,6 +26,7 @@ export class AuthenticateUser {
     const { token } = JWT.signUser(user)
 
     return {
+      userId: user.id,
       token
     }
   }

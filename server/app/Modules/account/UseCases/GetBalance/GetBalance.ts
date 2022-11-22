@@ -14,6 +14,7 @@ export class GetBalance implements IUseCase<AccountGetBalanceRequest, AccountRes
   async execute({userId}: AccountGetBalanceRequest): Promise<AccountResponse> {
     const user = await this.userRepository.findById(userId)
     const res = await this.accountRepository.findById(user.accountId);
+
     return this.mapper.toResponse(res)
   }
 }

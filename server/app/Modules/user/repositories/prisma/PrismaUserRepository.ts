@@ -9,13 +9,13 @@ export class PrismaUsersRepository implements IUsersRepository {
   constructor(private mapper: UserMapper){}
   
   async findById(id: string): Promise<IUser> {
-    const userExists = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id }, 
     })
-    if(!userExists){
+    if(!user){
       throw new UserNotFound(id);
     }
-    return this.mapper.toEntity(userExists)
+    return this.mapper.toEntity(user)
 
   }
 

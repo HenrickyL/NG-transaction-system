@@ -5,5 +5,6 @@ export type AuthenticatedMiddlewareRequest = {
 
 
 export type AuthenticatedResponse = {
+  userId: string,
   token: string
 }

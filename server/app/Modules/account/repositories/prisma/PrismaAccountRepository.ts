@@ -13,6 +13,7 @@ export class PrismaAccountRepository  implements IAccountRepository{
     const account = await prisma.account.findUnique({
       where:{ id: accountId}
     })
+
     if(!account){
       throw new AccountAlreadyExistError(accountId)
     }
