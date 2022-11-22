@@ -3,7 +3,6 @@ import { ErrorException } from "types/errors"
 import { IController } from "../IController"
 
 export const adaptRoute = (controller: IController) => {
-  console.log(' Adapter :')
 
   return async (request: Request, response: Response) => {
     const requestData = {

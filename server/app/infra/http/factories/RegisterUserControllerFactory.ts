@@ -9,7 +9,6 @@ import { AccountMapper } from "@modules/account/mapper/AccountMapper";
 import { RegisterUserController } from "app/useCases/RegisterUser/RegisterUserController";
 
 export function makeRegisterUserController(): IController {
-  console.log(' makeController :')
   const userMapper = new UserMapper()
   const accountMapper = new AccountMapper()
 

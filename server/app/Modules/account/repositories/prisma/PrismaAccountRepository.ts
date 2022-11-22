@@ -10,7 +10,6 @@ export class PrismaAccountRepository  implements IAccountRepository{
   
   
   async create(account: IAccount): Promise<IAccount> {
-    console.log(' CreateAccount :')
 
     const exist = await prisma.account.findUnique({
       where: { id: account.id },

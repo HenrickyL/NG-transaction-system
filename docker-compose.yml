@@ -7,7 +7,7 @@ networks:
 services:
     postgres:
       container_name: 'postgres'
-      image: postgres:13
+      image: postgres:14
       restart: always
       networks:
         - postgres-network

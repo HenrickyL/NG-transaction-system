@@ -17,20 +17,15 @@ export class PrismaUsersRepository implements IUsersRepository {
   }
 
   async create(user: IUser): Promise<IUser> {
-    console.log(' RepoCreateUser :')
-    console.log(user)
-    console.log(prisma)
     const userExists = await prisma.user.findUnique({
       where: { username: user.username }, 
     })
-    console.log(userExists)
 
     if(userExists){
       throw new UserAlreadyExistError(user.username);
     }
     
     const data = await this.mapper.toModel(user)
-    console.log(data)
 
      const current =  await prisma.user.create({ data:{
         username: data.username,

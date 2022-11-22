@@ -16,7 +16,6 @@ export class RegisterUser {
 
   async execute({username,password,}: RegisterUserRequest): Promise<UserResponse> 
   {
-    console.log(' Register :')
 
     const usernameValid = Username.create(username)
     const passwordValid:Password = Password.create(password)
