@@ -3,7 +3,7 @@ import { Transaction } from '@prisma/client';
 import { TransactionResponse } from 'types/DTOs/transactionDTO';
 import { ITransaction } from 'types/entities/ITransaction.d';
 
-export class AccountMapper implements IMapper<ITransaction, Transaction, TransactionResponse>{
+export class TransactionMapper implements IMapper<ITransaction, Transaction, TransactionResponse>{
   toEntity(model: Transaction): ITransaction {
     return {
       id: model.id,
