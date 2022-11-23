@@ -33,7 +33,7 @@
 
 
 * **Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de** **<r>VISUZALIZAR</r>** **seu próprio *balance* atual.**
-  - [ ] Um usuário A não pode visualizar o *balance* de um usuário B, por exemplo.
+  - [x] Um usuário A não pode visualizar o *balance* de um usuário B, por exemplo.
 
 -----------------
 
