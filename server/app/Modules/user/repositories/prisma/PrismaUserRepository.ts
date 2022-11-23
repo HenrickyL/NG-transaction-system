@@ -1,5 +1,5 @@
 import { prisma } from "@infra/prisma";
-import { UserAlreadyExistError, UserNotFound } from "@modules/user/useCases/RegisterUser/errors";
+import { IdNotBeNullError, UserAlreadyExistError, UsernameNotBeNullError, UsernameNotFound, UserNotFound } from "@modules/user/useCases/RegisterUser/errors";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { IUser } from "types/entities";
 
@@ -8,21 +8,40 @@ import { IUsersRepository } from "../IUsersRepository";
 export class PrismaUsersRepository implements IUsersRepository {
   constructor(private mapper: UserMapper){}
 
+  async validateId(id: string): Promise<void> {
+    if(id){
+      const user = await prisma.user.findUnique({
+        where: { id}
+      })
+      if(!user){
+        throw new UserNotFound(id);
+      }
+      return
+    }
+    throw new IdNotBeNullError()
+  }
+  
+  async validateUsername(username: string): Promise<void> {
+    if(username){
+      const user = await prisma.user.findUnique({
+        where: { username: username.toLocaleLowerCase()}
+      })
+      if(!user){
+        throw new UsernameNotFound(username);
+      }
+      return
+    }
+    throw new UsernameNotBeNullError()
+  }
+
 
   async updateById(user: IUser): Promise<IUser> {
-    const current = await prisma.user.findUnique({
-      where: { id: user.id }, 
-    })
-    if(!current){
-      throw new UserNotFound(user.id);
-    }
-    const data = await this.mapper.toModelAsync(user)
     const res = await prisma.user.update({
       where:{id: user.id},
       data: {
-        username: data.username,
-        password: data.password,
-        accountId: data.accountId,
+        username: user.username,
+        password: user.password,
+        accountId: user.accountId,
       }
     })
     return this.mapper.toEntity(res)
@@ -40,11 +59,16 @@ export class PrismaUsersRepository implements IUsersRepository {
   }
 
   async findByUsername(username: string): Promise<IUser> {
-    const user = await prisma.user.findUnique({
-      where:{ username: username.toLocaleLowerCase()}
-    })
-    if(!user) return null
-    return this.mapper.toEntity(user)
+    if(username){
+      const user = await prisma.user.findUnique({
+        where: { username: username.toLocaleLowerCase()}
+      })
+      if(!user){
+        throw new UsernameNotFound(username);
+      }
+      return this.mapper.toEntity(user)
+    }
+    throw new UsernameNotBeNullError()
   }
 
   async create(user: IUser): Promise<IUser> {

@@ -17,7 +17,6 @@ export class InvalidPasswordError extends BadRequestException{
   }
 }
 
-
 export class UserAlreadyExistError extends BadRequestException {
   constructor(username: string) {
     super(`The username '${username}' already exists.`)
@@ -31,11 +30,31 @@ export class UserNotFound extends NotFountException {
     this.name = 'UserNotFound'
   }
 }
+export class UsernameNotFound extends BadRequestException {
+  constructor(username: string) {
+    super(`The user with username '${username}' not found.`)
+    this.name = 'UsernameNotFound'
+  }
+}
 
 export class AccountAlreadyExistError extends ErrorException {
   constructor(id: string) {
     super(`The Account with id '${id}' already exists.`)
     this.name = 'AccountAlreadyExistError'
+  }
+}
+
+export class UsernameNotBeNullError extends ErrorException {
+  constructor() {
+    super(`Internal Error. Username not be null.`)
+    this.name = 'UsernameNotBeNull'
+  }
+}
+
+export class IdNotBeNullError extends ErrorException {
+  constructor() {
+    super(`Internal Error. id not be null.`)
+    this.name = 'IdNotBeNull'
   }
 }
 

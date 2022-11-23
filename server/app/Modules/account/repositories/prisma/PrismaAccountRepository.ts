@@ -10,6 +10,17 @@ export class PrismaAccountRepository  implements IAccountRepository{
   constructor(private mapper: AccountMapper){}
 
 
+  async update(account: IAccount): Promise<IAccount> {
+    var current = await prisma.account.update({
+      where:{ id: account.id},
+      data:{
+        balance: account.balance,
+      }
+    })
+    return this.mapper.toEntity(current);
+  }
+
+
   async findById(accountId: string): Promise<IAccount> {
     if(!accountId){
       throw new UserWithAccountNullError(accountId);
