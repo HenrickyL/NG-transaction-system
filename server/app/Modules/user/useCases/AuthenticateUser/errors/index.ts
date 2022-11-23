@@ -20,3 +20,10 @@ export class AccessDeniedError extends UnauthorizedException {
     this.name = 'AccessDeniedError'
   }
 }
+
+export class UnPermissionError extends UnauthorizedException {
+  constructor() {
+    super(`the user does not have permission for this action.`)
+    this.name = 'UnPermissionError'
+  }
+}

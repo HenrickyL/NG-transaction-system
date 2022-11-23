@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { ErrorException } from "types/errors"
 import { IController } from "../IController"
 
-export const adaptRoute = (controller: IController) => {
+export function adaptRoute<Req,Res>(controller: IController<Req,Res>) {
 
   return async (request: Request, response: Response) => {
     const requestData = {

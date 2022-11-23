@@ -4,7 +4,7 @@ import { AuthenticateUserRequest } from "types/DTOs/userDTO";
 import { HttpResponse, ok } from "types/HttpResponses";
 import { AuthenticateUser } from "./AuthenticateUser";
 
-export default class AuthenticateUserController implements IController {
+export default class AuthenticateUserController implements IController<AuthenticateUserRequest, AuthenticatedResponse> {
 
   constructor(private authUser: AuthenticateUser){}
 

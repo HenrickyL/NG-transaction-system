@@ -6,5 +6,6 @@ export type AccountResponse = {
 
 
 export type AccountGetBalanceRequest = {
-  userId: string
+  userId: string,
+  inSessionUserId: string
 }

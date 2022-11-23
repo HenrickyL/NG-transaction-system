@@ -3,7 +3,7 @@ import { created, HttpResponse } from "types/HttpResponses";
 import { RegisterUser } from "./RegisterUser";
 import { RegisterUserRequest, UserResponse } from 'types/DTOs/userDTO';
 
-export class RegisterUserController implements IController {
+export class RegisterUserController implements IController<RegisterUserRequest,UserResponse> {
   constructor(
     private registerUser: RegisterUser
   ) {}

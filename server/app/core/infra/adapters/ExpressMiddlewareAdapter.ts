@@ -10,7 +10,7 @@ export const adaptMiddleware = (middleware: Middleware) => {
     }
     try{
       const httpResponse = await middleware.handle(requestData, request.body)
-      Object.assign(request, httpResponse.body)
+      Object.assign(request, httpResponse)
       return next()
 
     }catch(e){

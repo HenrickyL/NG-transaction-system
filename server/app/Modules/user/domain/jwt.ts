@@ -1,6 +1,6 @@
 import { InvalidJWTTokenError } from '@modules/user/useCases/AuthenticateUser/errors';
 import { sign, verify } from 'jsonwebtoken'
-import { AuthData } from 'types/DTOs/userDTO'
+import { AuthenticatedUserSessionSData } from 'types/DTOs/userDTO'
 import { AuthTokenPayload } from 'types/DTOs/userDTO';
 import {auth} from '@config/auth'
 import { IUser } from 'types/entities/IUser.d';
@@ -8,7 +8,7 @@ export class JWT {
   public readonly userId: string
   public readonly token: string
 
-  private constructor({ userId, token }: AuthData) {
+  private constructor({ inSessionUserId: userId, token }: AuthenticatedUserSessionSData) {
     this.userId = userId
     this.token = token
   }
@@ -24,7 +24,7 @@ export class JWT {
   }
   static createFromJWT(token: string):  JWT {
     const jwtPayload = this.decodeToken(token)
-    const jwt = new JWT({ token, userId: jwtPayload.sub })
+    const jwt = new JWT({ token, inSessionUserId: jwtPayload.sub })
     return jwt
   }
 
@@ -33,7 +33,7 @@ export class JWT {
       subject: user.id,
       expiresIn: auth.expireIn,
     })
-    const jwt = new JWT({ userId: user.id, token })
+    const jwt = new JWT({ inSessionUserId: user.id, token })
     return jwt
   }
 }

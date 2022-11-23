@@ -16,8 +16,8 @@ export type AuthenticateUserRequest = {
   password: string
 }
 
-export interface AuthData {
-  userId: string
+export interface AuthenticatedUserSessionSData {
+  inSessionUserId: string
   token: string
 }
 
