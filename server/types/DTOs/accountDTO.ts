@@ -18,5 +18,6 @@ export type AccountCashOutRequest = {
 }
 
 export type AccountCashOutResponse = {
-  currentBalance: number
+  currentTransactionId: string,
+  currentBalance: number,
 }

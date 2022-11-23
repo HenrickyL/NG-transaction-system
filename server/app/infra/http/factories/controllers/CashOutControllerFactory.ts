@@ -6,13 +6,18 @@ import { PrismaUsersRepository } from "@modules/user/repositories/prisma/PrismaU
 import { AccountCashOutRequest, AccountCashOutResponse } from "types/DTOs/accountDTO";
 import { CashOut } from '@modules/account/UseCases/CashOut/CashOut';
 import { CashOutController } from '@modules/account/UseCases/CashOut/CashOutController';
+import { PrismaTransactionRepository } from '@modules/transactions/repositories/prisma/PrismaITransactionRepository';
+import { TransactionMapper } from '@modules/transactions/mapper/TransactionMapper';
 
 export function makeCashOutController(): IController<AccountCashOutRequest, AccountCashOutResponse> {
   const userMapper = new UserMapper()
   const accountMapper = new AccountMapper()
+  const transactionMapper = new TransactionMapper()
   const prismaUsersRepository = new PrismaUsersRepository(userMapper)
   const prismaAccountRepository = new PrismaAccountRepository(accountMapper)
-  const cashOut = new CashOut(prismaUsersRepository,prismaAccountRepository)
+  const prismaTransactionRepository = new PrismaTransactionRepository(transactionMapper)
+
+  const cashOut = new CashOut(prismaUsersRepository,prismaAccountRepository,prismaTransactionRepository)
   const cashOutController = new CashOutController(cashOut)
   return cashOutController
 }

@@ -6,11 +6,14 @@ import { CashOutInsufficientBalanceError, CashOutInternalError, CashOutValueErro
 import { IAccount } from '../../../../../types/entities/IAccount';
 import { UnPermissionError } from "@modules/user/useCases/AuthenticateUser/errors";
 import { InSection } from "@config/auth";
+import { ITransactionRepository } from './../../../transactions/repositories/ITransactionRepository';
+import { ITransaction } from "types/entities";
 
 export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutResponse>{
   constructor(
     private userRepository: IUsersRepository,
     private accountRepository: IAccountRepository,
+    private transactionRepository: ITransactionRepository,
     ) {}
 
   async execute(request: AccountCashOutRequest): Promise<AccountCashOutResponse> {
@@ -47,8 +50,15 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
     }
     try{
       const updatedCashInAccount = await this.accountRepository.update(cashInAccountResolved)
+      const transactionData: ITransaction = {
+        value: value,
+        creditedAccountId: updatedCashInAccount.id,
+        debitedAccountId: currentAccount.id
+      } 
+      var currentTransaction = await this.transactionRepository.create(transactionData)
       return {
-        currentBalance: updatedCurrentAccount.balance
+        currentBalance: updatedCurrentAccount.balance,
+        currentTransactionId: currentTransaction.id
       }
     }catch(e){
       const reversedCurrentAccount = await this.accountRepository.update(currentAccount)
