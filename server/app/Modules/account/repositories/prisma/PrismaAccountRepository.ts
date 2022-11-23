@@ -39,15 +39,6 @@ export class PrismaAccountRepository  implements IAccountRepository{
   
   
   async create(account: IAccount): Promise<IAccount> {
-    if(account.id){
-      const exist = await prisma.account.findUnique({
-        where: { id: account.id },
-      })
-      if(exist){
-        throw new AccountAlreadyExistError(account.id);
-      }
-    }
-    
     const current =  await prisma.account.create({ data:{
       balance: account.balance
     } });

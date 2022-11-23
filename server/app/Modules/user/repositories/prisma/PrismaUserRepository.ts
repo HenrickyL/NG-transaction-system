@@ -7,11 +7,23 @@ import { IUsersRepository } from "../IUsersRepository";
 
 export class PrismaUsersRepository implements IUsersRepository {
   constructor(private mapper: UserMapper){}
+  async validateUsernameNotExist(username: string): Promise<void> {
+    if(username){
+      const user = await prisma.user.findUnique({
+        where: { username: username.toLocaleLowerCase()}
+      })
+      if(user){
+        throw new UserAlreadyExistError(username);
+      }
+      return
+    }
+    throw new UsernameNotBeNullError()
+  }
 
   async validateId(id: string): Promise<void> {
     if(id){
       const user = await prisma.user.findUnique({
-        where: { id}
+        where: {id}
       })
       if(!user){
         throw new UserNotFound(id);
@@ -35,12 +47,12 @@ export class PrismaUsersRepository implements IUsersRepository {
   }
 
 
-  async updateById(user: IUser): Promise<IUser> {
+  async update(user: IUser): Promise<IUser> {
     const res = await prisma.user.update({
       where:{id: user.id},
       data: {
         username: user.username,
-        password: user.password,
+        password: user.password.value,
         accountId: user.accountId,
       }
     })
@@ -72,20 +84,12 @@ export class PrismaUsersRepository implements IUsersRepository {
   }
 
   async create(user: IUser): Promise<IUser> {
-    const userExists = await prisma.user.findUnique({
-      where: { username: user.username }, 
-    })
-
-    if(userExists){
-      throw new UserAlreadyExistError(user.username);
-    }
-    
-    const data = await this.mapper.toModel(user)
-
+    const data = await this.mapper.toModelAsync(user)
      const current =  await prisma.user.create({ data:{
         username: data.username,
         password: data.password
      } });
+     console.log('a')
      return this.mapper.toEntity(current)
   }
 }

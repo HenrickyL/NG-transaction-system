@@ -38,6 +38,7 @@ export class UserMapper implements IMapper<IUser, User, UserResponse>{
       updatedAt: entity.updatedAt
     }
   }
+  
   toResponse(entity: IUser): UserResponse {
     return {
       id: entity.id,

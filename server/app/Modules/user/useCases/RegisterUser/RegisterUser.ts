@@ -17,25 +17,25 @@ export class RegisterUser implements IUseCase<RegisterUserRequest, UserResponse>
 
   async execute({username,password,}: RegisterUserRequest): Promise<UserResponse> 
   {
-
-    const usernameValid = Username.create(username)
-    const passwordValid:Password = Password.create(password)
-
+    await this.usersRepository.validateUsernameNotExist(username);
     const userData: IUser ={
-      username: usernameValid,
-      password: passwordValid
+      username: Username.create(username),
+      password: Password.create(password)
     }
     let user:IUser = await this.usersRepository.create(userData);
-
+    console.log('user: ',user)
     const accountData:IAccount = {
       balance: 100
     }
     const account = await this.accountRepository.create(accountData)
-  
-    const res = await this.usersRepository.updateById({
-      ...user,
-      accountId: account.id,
-    })
+    console.log('user: ',user)
+    const userUpdated: IUser = {
+        ...user,
+        accountId: account.id,
+    }
+    console.log('userUpdated: ',userUpdated)
+
+    const res = await this.usersRepository.update(userUpdated)
     return this.mapper.toResponse(res)
   }
 }
