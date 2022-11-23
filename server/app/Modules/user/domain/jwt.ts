@@ -28,8 +28,8 @@ export class JWT {
     return jwt
   }
 
-  static signUser(user: IUser): JWT {
-    const token = sign({}, auth.secretKey, {
+  static signUser(user: IUser, payload?: Object): JWT {
+    const token = sign(payload || {}, auth.secretKey, {
       subject: user.id,
       expiresIn: auth.expireIn,
     })

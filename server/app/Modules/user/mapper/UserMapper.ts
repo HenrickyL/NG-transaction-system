@@ -17,12 +17,23 @@ export class UserMapper implements IMapper<IUser, User, UserResponse>{
     }
     return current
   }
-  async toModel(entity: IUser): Promise<User> {
+  async toModelAsync(entity: IUser): Promise<User> {
     return {
       id: entity.id,
       username: entity.username,
       accountId: entity.accountId,
       password: await entity.password.getHashedValue(),
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt
+    }
+  }
+
+  toModel(entity: IUser): User{
+    return {
+      id: entity.id,
+      username: entity.username,
+      accountId: entity.accountId,
+      password: entity.password.value,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt
     }

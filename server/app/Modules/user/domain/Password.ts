@@ -1,6 +1,6 @@
 import { InvalidPasswordErrorsEnum } from 'types/enums';
 import bcrypt from 'bcryptjs'
-import { InvalidPasswordError } from '@modules/user/useCases/RegisterUser/errors';
+import { InvalidPasswordError, PasswordAccessNotAllowed } from '@modules/user/useCases/RegisterUser/errors';
 
 
 export class Password{
@@ -40,6 +40,8 @@ export class Password{
 
 
   get value():string{
+    if(!this._hashed)
+      throw new PasswordAccessNotAllowed();
     return this._password
   }
   get isHashed():boolean{

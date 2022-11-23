@@ -16,7 +16,7 @@ export class PrismaUsersRepository implements IUsersRepository {
     if(!current){
       throw new UserNotFound(user.id);
     }
-    const data = await this.mapper.toModel(user)
+    const data = await this.mapper.toModelAsync(user)
     const res = await prisma.user.update({
       where:{id: user.id},
       data: {

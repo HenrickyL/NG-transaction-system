@@ -39,5 +39,12 @@ export class AccountAlreadyExistError extends ErrorException {
   }
 }
 
+export class PasswordAccessNotAllowed extends ErrorException {
+  constructor() {
+    super(`Password access not allowed.`)
+    this.name = 'PasswordAccessNotAllowed'
+  }
+}
+
 
 

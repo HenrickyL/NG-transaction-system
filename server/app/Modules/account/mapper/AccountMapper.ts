@@ -13,7 +13,7 @@ export class AccountMapper implements IMapper<IAccount, Account,AccountResponse>
       updatedAt: model.updatedAt,
     }
   }
-  async toModel(entity: IAccount): Promise<Account> {
+  toModel(entity: IAccount): Account {
     return {
       id:entity.id,
       balance: entity.balance,
