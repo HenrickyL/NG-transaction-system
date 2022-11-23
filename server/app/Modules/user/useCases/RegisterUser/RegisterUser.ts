@@ -36,7 +36,6 @@ export class RegisterUser implements IUseCase<RegisterUserRequest, UserResponse>
       ...user,
       accountId: account.id,
     })
-    console.log(res)
     return this.mapper.toResponse(res)
   }
 }

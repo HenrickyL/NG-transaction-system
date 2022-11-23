@@ -2,8 +2,10 @@ import { IUseCase } from "@core/infra/IUseCase";
 import { IAccountRepository } from "@modules/account/repositories/IAccountRepository";
 import { IUsersRepository } from "@modules/user/repositories/IUsersRepository";
 import { AccountCashOutRequest, AccountCashOutResponse } from "types/DTOs/accountDTO";
-import { CashOutInsufficientBalanceError, CashOutInternalError, CashOutValueError } from "./errors";
-import { IAccount } from './../../../../../types/entities/IAccount.d';
+import { CashOutInsufficientBalanceError, CashOutInternalError, CashOutValueError, CashOutYourselfAccountError } from "./errors";
+import { IAccount } from '../../../../../types/entities/IAccount';
+import { UnPermissionError } from "@modules/user/useCases/AuthenticateUser/errors";
+import { InSection } from "@config/auth";
 
 export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutResponse>{
   constructor(
@@ -12,7 +14,8 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
     ) {}
 
   async execute(request: AccountCashOutRequest): Promise<AccountCashOutResponse> {
-    const {inSessionUserId,cashInUsername,value} = request
+    const {cashInUsername,value} = request
+    const {inSessionUserId} = InSection.auth
     if(value <= 0){
       throw new CashOutValueError(value)
     }
@@ -21,8 +24,15 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
     if(currentAccount.balance < value){
       throw new CashOutInsufficientBalanceError(value);
     }
+    console.log('current: ',currentUser)
+
     //
-    const cashInUser = await this.userRepository.findByUsername(inSessionUserId)
+    const cashInUser = await this.userRepository.findByUsername(cashInUsername)
+    if(inSessionUserId == cashInUser.id){
+      throw new CashOutYourselfAccountError();
+    }
+    console.log('cashInUser: ',cashInUser)
+
     const cashInAccount = await this.accountRepository.findById(cashInUser.accountId)
     //
     const currentAccountResolved: IAccount = {
@@ -45,4 +55,12 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
       throw new CashOutInternalError(cashInUser.username)
     }
   }
+
+  async validate({userId}: AccountCashOutRequest): Promise<void>{
+    if(InSection.auth.inSessionUserId != userId){
+      throw new UnPermissionError();
+    }
+  }
+
+  
 }

@@ -21,3 +21,10 @@ export class CashOutInternalError extends ErrorException {
     this.name = 'CashOutInternalError'
   }
 }
+
+export class CashOutYourselfAccountError extends BadRequestException {
+  constructor() {
+    super(`Unable to cash out to yourself.`)
+    this.name = 'CashOutYourselfAccountError'
+  }
+}

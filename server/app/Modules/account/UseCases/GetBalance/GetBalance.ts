@@ -1,3 +1,4 @@
+import { InSection } from "@config/auth";
 import { IUseCase } from "@core/infra/IUseCase";
 import { IAccountRepository, } from "@modules/account/repositories/IAccountRepository";
 import { UnPermissionError } from "@modules/user/useCases/AuthenticateUser/errors";
@@ -12,8 +13,8 @@ export class GetBalance implements IUseCase<AccountGetBalanceRequest, AccountRes
     private mapper: AccountMapper
     ) {}
 
-  async execute({userId,inSessionUserId}: AccountGetBalanceRequest): Promise<AccountResponse> {
-    if(userId == inSessionUserId){
+  async execute({userId}: AccountGetBalanceRequest): Promise<AccountResponse> {
+    if(userId == InSection.auth.inSessionUserId){
       const user = await this.userRepository.findById(userId)
       const res = await this.accountRepository.findById(user.accountId);
       return this.mapper.toResponse(res)

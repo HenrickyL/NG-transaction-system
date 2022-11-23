@@ -10,7 +10,6 @@ export class GetBalanceController implements IController<AccountGetBalanceReques
   ) {}
   
   async handle (request: AccountGetBalanceRequest): Promise<HttpResponse<AccountResponse>>{
-      console.log(request)
       const result = await this.getBalance.execute(request)
       return ok(result)
 

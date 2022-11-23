@@ -1,3 +1,4 @@
+import { InSection } from "@config/auth";
 import { Middleware } from "@core/infra/Middleware"
 import { NextFunction, Request, Response } from "express"
 import { ErrorException } from 'types/errors';
@@ -10,7 +11,8 @@ export const adaptMiddleware = (middleware: Middleware) => {
     }
     try{
       const httpResponse = await middleware.handle(requestData, request.body)
-      Object.assign(request, httpResponse)
+      InSection.auth = httpResponse.body
+      Object.assign(request,httpResponse.body)
       return next()
 
     }catch(e){
