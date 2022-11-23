@@ -6,7 +6,12 @@ import { IAccount } from 'types/entities';
 
 export class AccountMapper implements IMapper<IAccount, Account,AccountResponse>{
   toEntity(model: Account): IAccount {
-    throw new Error("Method not implemented.");
+    return {
+      id: model.id,
+      balance: model.balance,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt,
+    }
   }
   async toModel(entity: IAccount): Promise<Account> {
     return {

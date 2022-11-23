@@ -19,9 +19,14 @@ export const adaptRoute = (controller: IController) => {
           type: e.type,
           message: e.message,
         })
+      }else if(e instanceof Error){
+        return response.status(500).json({
+          type: 'InternalError',
+          message: e,
+        })
       }else{
         return response.status(500).json({
-          type: 'InterError',
+          type: 'InternalError',
           message: e,
         })
       }

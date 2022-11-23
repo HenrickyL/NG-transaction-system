@@ -15,11 +15,16 @@ export class Users extends Entity<IUser>{
   get password(): Password {
     return this._password
   }
-  get accountId(): string | undefined {
+  get accountId(): string {
       return this._accountId
   }
   get account() {
     return this._account
+  }
+
+
+  set accountId(accountId: string){
+    this._accountId = accountId
   }
   constructor(props: IUser) {
     super(props)
