@@ -16,12 +16,17 @@ export type AuthenticateUserRequest = {
   password: string
 }
 
-export interface AuthenticatedUserSessionSData {
+export interface AuthenticatedUserSessionsData {
   inSessionUserId: string
+  InSessionUsername: string
   token: string
 }
 
+export type AuthTokenPayloadSub = {
+  username: string
+  userId: string
+}
 export interface AuthTokenPayload {
   exp: number
-  sub: string
+  sub: AuthTokenPayloadSub
 }

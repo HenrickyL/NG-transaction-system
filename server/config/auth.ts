@@ -1,4 +1,4 @@
-import { AuthenticatedUserSessionSData } from "types/DTOs/userDTO";
+import { AuthenticatedUserSessionsData } from "types/DTOs/userDTO";
 
 export const auth = {
   port: process.env.API_PORT || process.env.PORT,
@@ -8,5 +8,5 @@ export const auth = {
 
 
 export abstract class InSection{
-    static auth: AuthenticatedUserSessionSData
+    static auth: AuthenticatedUserSessionsData
 }

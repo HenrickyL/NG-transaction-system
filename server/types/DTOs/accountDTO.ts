@@ -1,5 +1,5 @@
 
-import { AuthenticatedUserSessionSData } from './userDTO';
+import { AuthenticatedUserSessionsData } from './userDTO';
 export type AccountResponse = {
   id: string
   balance: number
@@ -7,12 +7,12 @@ export type AccountResponse = {
 
 
 export type AccountGetBalanceRequest = {
-  userId: string,
+  username: string,
 }
 
 
 export type AccountCashOutRequest = {
-  userId: string;
+  username: string;
   cashInUsername: string,
   value: number
 }

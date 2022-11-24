@@ -66,8 +66,8 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
     }
   }
 
-  validate({userId}: AccountCashOutRequest): void{
-    if(InSection.auth.inSessionUserId != userId){
+  validate({username}: AccountCashOutRequest): void{
+    if(InSection.auth.InSessionUsername != username){
       throw new UnPermissionError();
     }
   }

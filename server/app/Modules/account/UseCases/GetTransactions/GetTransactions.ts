@@ -4,7 +4,7 @@ import { IUsersRepository } from '../../../user/repositories/IUsersRepository';
 import { ITransactionRepository } from '../../../transactions/repositories/ITransactionRepository';
 import { TransactionMapper } from "@modules/transactions/mapper/TransactionMapper";
 import { InSection } from '@config/auth';
-import { AccessDeniedError } from '../../../user/useCases/AuthenticateUser/errors/index';
+import { UnPermissionError } from '../../../user/useCases/AuthenticateUser/errors/index';
 
 export class GetTransactions implements IUseCase<TransactionRequest,GetTransactionResponse>{
   constructor(
@@ -13,21 +13,21 @@ export class GetTransactions implements IUseCase<TransactionRequest,GetTransacti
     private transactionMapper: TransactionMapper
 
     ){}
-  async execute({userId}: TransactionRequest): Promise<GetTransactionResponse> {
-    const user = await this.userRepository.findById(userId, true)
+  async execute({username}: TransactionRequest): Promise<GetTransactionResponse> {
+    const user = await this.userRepository.findByUsername(username)
     var creditedTransactions = await this.transactionRepository.findAllByAccountId(user.accountId,true)
     var debitedTransactions = await this.transactionRepository.findAllByAccountId(user.accountId,false)
 
     return {
-      userId,
+      userId: user.id,
+      username: user.username,
       credited: creditedTransactions.map(x=>this.transactionMapper.toResponse(x)),
       debited: debitedTransactions.map(x=>this.transactionMapper.toResponse(x))
     }
-
   }
-  validate ({userId}: TransactionRequest): void{
-    if( userId != InSection.auth.inSessionUserId){
-      throw new AccessDeniedError();
+  validate ({username}: TransactionRequest): void{
+    if( username != InSection.auth.InSessionUsername){
+      throw new UnPermissionError();
     }
   }
 

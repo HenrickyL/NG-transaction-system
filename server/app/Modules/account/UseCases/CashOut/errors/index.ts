@@ -16,8 +16,8 @@ export class CashOutInsufficientBalanceError extends BadRequestException {
 
 
 export class CashOutInternalError extends ErrorException {
-  constructor(cashOutUsername: string) {
-    super(`Internal Error. Something went wrong when transferring to the '${cashOutUsername}' account, we refund the original amount..`)
+  constructor(cashOutUsername: string, data?:any) {
+    super(`Internal Error. Something went wrong when transferring to the '${cashOutUsername}' account, we refund the original amount..`, data)
     this.name = 'CashOutInternalError'
   }
 }
@@ -28,3 +28,4 @@ export class CashOutYourselfAccountError extends BadRequestException {
     this.name = 'CashOutYourselfAccountError'
   }
 }
+

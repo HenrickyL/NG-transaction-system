@@ -10,7 +10,7 @@ import { makeGetTransactionsController } from './../factories/controllers/GetTra
 const accountRouter = express.Router()
 
 accountRouter.use(adaptMiddleware(makeEnsureAuthenticatedMiddleware()))
-accountRouter.get('/:userId', adaptRoute(makeGetBalanceController()))
-accountRouter.post('/:userId', adaptRoute(makeCashOutController()))
-accountRouter.get('/:userId/transactions', adaptRoute(makeGetTransactionsController()))
+accountRouter.get('/:username', adaptRoute(makeGetBalanceController()))
+accountRouter.post('/:username', adaptRoute(makeCashOutController()))
+accountRouter.get('/:username/transactions', adaptRoute(makeGetTransactionsController()))
 export { accountRouter }

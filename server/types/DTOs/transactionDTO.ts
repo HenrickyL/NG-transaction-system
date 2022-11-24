@@ -6,13 +6,14 @@ export type TransactionResponse = {
 }
 
 export type TransactionRequest = {
-  userId: string
+  username: string
 }
 
 
 
 export type GetTransactionResponse = {
   userId:  string
+  username:  string
   credited: TransactionResponse[]
   debited: TransactionResponse[]
 }
