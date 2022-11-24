@@ -7,5 +7,5 @@ export interface IUsersRepository {
   update(user: IUser): Promise<IUser>
   create(user: IUser): Promise<IUser>
   findByUsername(username: string): Promise<IUser>
-  findById(id: string): Promise<IUser>
+  findById(id: string, validate?:boolean): Promise<IUser>
 }

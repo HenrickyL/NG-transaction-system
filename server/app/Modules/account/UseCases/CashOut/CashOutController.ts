@@ -11,7 +11,7 @@ export class CashOutController implements IController<AccountCashOutRequest, Acc
   
   async handle(request: AccountCashOutRequest): Promise<HttpResponse<AccountCashOutResponse>>{
     if(this.cashOut.validate){
-      await this.cashOut.validate(request)
+      this.cashOut.validate(request)
     }
     const result = await this.cashOut.execute(request)
     return ok(result)

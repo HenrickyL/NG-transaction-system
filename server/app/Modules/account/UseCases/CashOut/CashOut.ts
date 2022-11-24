@@ -66,7 +66,7 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
     }
   }
 
-  async validate({userId}: AccountCashOutRequest): Promise<void>{
+  validate({userId}: AccountCashOutRequest): void{
     if(InSection.auth.inSessionUserId != userId){
       throw new UnPermissionError();
     }

@@ -59,11 +59,11 @@ export class PrismaUsersRepository implements IUsersRepository {
     return this.mapper.toEntity(res)
   }
   
-  async findById(id: string): Promise<IUser> {
+  async findById(id: string, validate?:boolean): Promise<IUser> {
     const user = await prisma.user.findUnique({
       where: { id }, 
     })
-    if(!user){
+    if(!user && validate){
       throw new UserNotFound(id);
     }
     return this.mapper.toEntity(user)
