@@ -1,12 +1,12 @@
 import { IUseCase } from "@core/infra/IUseCase";
 import { GetTransactionResponse, TransactionRequest } from "types/DTOs/transactionDTO";
-import { IUsersRepository } from './../../../user/repositories/IUsersRepository';
-import { ITransactionRepository } from './../../../transactions/repositories/ITransactionRepository';
+import { IUsersRepository } from '../../../user/repositories/IUsersRepository';
+import { ITransactionRepository } from '../../../transactions/repositories/ITransactionRepository';
 import { TransactionMapper } from "@modules/transactions/mapper/TransactionMapper";
 import { InSection } from '@config/auth';
-import { AccessDeniedError } from './../../../user/useCases/AuthenticateUser/errors/index';
+import { AccessDeniedError } from '../../../user/useCases/AuthenticateUser/errors/index';
 
-export class GetTransactions implements IUseCase<TransactionRequest,GetTransactionResponse >{
+export class GetTransactions implements IUseCase<TransactionRequest,GetTransactionResponse>{
   constructor(
     private userRepository: IUsersRepository,
     private transactionRepository: ITransactionRepository,
