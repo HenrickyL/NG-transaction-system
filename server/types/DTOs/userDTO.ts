@@ -22,11 +22,8 @@ export interface AuthenticatedUserSessionsData {
   token: string
 }
 
-export type AuthTokenPayloadSub = {
-  username: string
-  userId: string
-}
+
 export interface AuthTokenPayload {
   exp: number
-  sub: AuthTokenPayloadSub
+  sub: string
 }

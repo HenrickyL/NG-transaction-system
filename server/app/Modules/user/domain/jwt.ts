@@ -26,17 +26,15 @@ export class JWT {
     const jwtPayload = this.decodeToken(token)
     const jwt = new JWT({ 
       token,
-      InSessionUsername: jwtPayload.sub.username,
-      inSessionUserId: jwtPayload.sub.userId })
+      InSessionUsername: jwtPayload.sub,
+      inSessionUserId: jwtPayload.sub })
     return jwt
   }
 
   static signUser(user: IUser, payload?: Object): JWT {
+    const subjectStr:string = `${user.id}@${user.username}`
     const token = sign(payload || {}, auth.secretKey, {
-      subject: {
-        userId: user.id,
-        username: user.username
-      },
+      subject: subjectStr,
       expiresIn: auth.expireIn,
     })
     const jwt = new JWT({ 

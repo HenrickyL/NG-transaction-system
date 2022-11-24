@@ -26,7 +26,8 @@ export class GetTransactions implements IUseCase<TransactionRequest,GetTransacti
     }
   }
   validate ({username}: TransactionRequest): void{
-    if( username != InSection.auth.InSessionUsername){
+    console.log(InSection.auth,username)
+    if( !InSection.IsEqualUsername(username)){
       throw new UnPermissionError();
     }
   }

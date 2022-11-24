@@ -9,14 +9,7 @@ export class RegisterUserController implements IController<RegisterUserRequest,U
   ) {}
 
   async handle(request: RegisterUserRequest): Promise<HttpResponse<UserResponse>> {
-
-      const { username, password } = request
-
-      const result = await this.registerUser.execute({
-        username,
-        password,
-      })
-
-      return created<UserResponse>(result)
+        const result = await this.registerUser.execute(request)
+        return created<UserResponse>(result)
   }
 }

@@ -20,11 +20,13 @@ export const adaptMiddleware = (middleware: Middleware) => {
         return response.status(e.statusCode).json({
           type: e.type,
           message: e.message,
+          error: e.data
         })
       }else{
         return response.status(500).json({
           type: 'InterError',
           message: e,
+          error: e.data
         })
       }
     }

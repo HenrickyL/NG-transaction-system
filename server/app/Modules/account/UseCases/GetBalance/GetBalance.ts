@@ -20,7 +20,7 @@ export class GetBalance implements IUseCase<AccountGetBalanceRequest, AccountRes
   }
 
   validate({username}: AccountGetBalanceRequest):void{
-    if(username != InSection.auth.InSessionUsername){
+    if(!InSection.IsEqualUsername(username)){
       throw new UnPermissionError();
     }
   }

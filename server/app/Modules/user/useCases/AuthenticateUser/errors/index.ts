@@ -1,9 +1,10 @@
 import { BadRequestException, UnauthorizedException } from 'types/errors';
+import { ErrorException } from 'types/errors';
 
-export class InvalidEmailOrPasswordError extends BadRequestException{
+export class InvalidUsernameOrPasswordError extends BadRequestException{
   constructor() {
     super(`Invalid username/password combination.`)
-    this.name = 'InvalidEmailOrPasswordError'
+    this.name = 'InvalidUsernameOrPasswordError'
   }
 }
 

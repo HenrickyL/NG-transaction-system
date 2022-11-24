@@ -6,10 +6,3 @@ export class UserWithAccountNullError extends ErrorException {
     this.name = 'UserWithAccountNullError'
   }
 }
-
-export class GetBalanceInternalError extends ErrorException {
-  constructor(data: any) {
-    super(`Get Balance Internal Error.`,data)
-    this.name = 'GetBalanceInternalError'
-  }
-}

@@ -9,4 +9,8 @@ export const auth = {
 
 export abstract class InSection{
     static auth: AuthenticatedUserSessionsData
+
+    static IsEqualUsername(username: string): boolean{
+      return this.auth.InSessionUsername.toLocaleLowerCase() == username.toLocaleLowerCase()
+    }
 }

@@ -14,10 +14,10 @@ export class EnsureAuthenticatedMiddleware<T> implements Middleware {
    
     if (token) {
         const decoded = decode(token) as AuthTokenPayload
-        
+        const [userId, username] = decoded.sub.split('@')
         return ok<AuthenticatedUserSessionsData>({
-          inSessionUserId: decoded.sub.userId,
-          InSessionUsername: decoded.sub.username,
+          inSessionUserId: userId,
+          InSessionUsername: username,
           token
         })
     }

@@ -64,6 +64,3 @@ export class PasswordAccessNotAllowed extends ErrorException {
     this.name = 'PasswordAccessNotAllowed'
   }
 }
-
-
-

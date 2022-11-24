@@ -8,13 +8,9 @@ export default class AuthenticateUserController implements IController<Authentic
 
   constructor(private authUser: AuthenticateUser){}
 
-  async handle({username,password}: AuthenticateUserRequest): Promise<HttpResponse<AuthenticatedResponse>>{
-    const result = await this.authUser
-      .execute({
-                username,
-                password
-              })
-    return ok(result)
+  async handle(request: AuthenticateUserRequest): Promise<HttpResponse<AuthenticatedResponse>>{
+      const result = await this.authUser.execute(request)
+      return ok(result)
   }
 
 }

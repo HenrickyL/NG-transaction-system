@@ -18,16 +18,17 @@ export function adaptRoute<Req,Res>(controller: IController<Req,Res>) {
         return response.status(e.statusCode).json({
           type: e.type,
           message: e.message,
+          error: e.data
         })
       }else if(e instanceof Error){
         return response.status(500).json({
           type: 'InternalError',
-          message: e,
+          error: e,
         })
       }else{
         return response.status(500).json({
           type: 'InternalError',
-          message: e,
+          error: e,
         })
       }
     }
