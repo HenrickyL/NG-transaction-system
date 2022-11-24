@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate": "npx prisma generate",
     "studio": "npx prisma studio",
-    "start": "npm run generate && npm run dev"
+    "start": "npm run migrate  && npm run generate && npm run dev"
   },
   "keywords": [],
   "author": "Henricky de Lima Monteiro",
