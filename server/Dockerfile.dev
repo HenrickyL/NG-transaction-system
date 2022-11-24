@@ -4,5 +4,4 @@ COPY ./package*.json ./
 COPY prisma ./prisma/
 RUN npm i
 COPY . .
-RUN npm run migrate
 CMD [ "npm", "start"]
