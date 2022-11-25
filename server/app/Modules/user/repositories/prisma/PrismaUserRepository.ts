@@ -102,7 +102,6 @@ export class PrismaUsersRepository implements IUsersRepository {
         username: data.username,
         password: data.password
      } });
-     console.log('a')
      return this.mapper.toEntity(current)
   }
 }

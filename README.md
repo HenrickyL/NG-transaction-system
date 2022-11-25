@@ -9,3 +9,6 @@
   ```
   $ docker-compose up
   ```
+
+  ![](_imgs/1.png)
+  ![](_imgs/2.png)
