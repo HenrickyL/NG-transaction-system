@@ -2,7 +2,6 @@
 
 * React
 * typescript
-* tailwind css
 * storybook doc
 
 # Requisitos:
