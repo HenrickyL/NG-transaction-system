@@ -30,6 +30,12 @@ export class UserNotFound extends NotFountException {
     this.name = 'UserNotFound'
   }
 }
+export class AccountNotFound extends ErrorException {
+  constructor(id: string) {
+    super(`The account with id '${id}' not found.`)
+    this.name = 'AccountNotFound'
+  }
+}
 export class UsernameNotFound extends BadRequestException {
   constructor(username: string) {
     super(`The user with username '${username}' not found.`)

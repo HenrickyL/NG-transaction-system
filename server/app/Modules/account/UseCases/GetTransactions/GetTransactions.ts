@@ -1,19 +1,19 @@
 import { IUseCase } from "@core/infra/IUseCase";
-import { GetTransactionResponse, TransactionRequest } from "types/DTOs/transactionDTO";
+import { GetTransactionsResponse, TransactionRequest } from "types/DTOs/transactionDTO";
 import { IUsersRepository } from '../../../user/repositories/IUsersRepository';
 import { ITransactionRepository } from '../../../transactions/repositories/ITransactionRepository';
 import { TransactionMapper } from "@modules/transactions/mapper/TransactionMapper";
 import { InSection } from '@config/auth';
 import { UnPermissionError } from '../../../user/useCases/AuthenticateUser/errors/index';
 
-export class GetTransactions implements IUseCase<TransactionRequest,GetTransactionResponse>{
+export class GetTransactions implements IUseCase<TransactionRequest,GetTransactionsResponse>{
   constructor(
     private userRepository: IUsersRepository,
     private transactionRepository: ITransactionRepository,
     private transactionMapper: TransactionMapper
 
     ){}
-  async execute({username}: TransactionRequest): Promise<GetTransactionResponse> {
+  async execute({username}: TransactionRequest): Promise<GetTransactionsResponse> {
     const user = await this.userRepository.findByUsername(username)
     var creditedTransactions = await this.transactionRepository.findAllByAccountId(user.accountId,true)
     var debitedTransactions = await this.transactionRepository.findAllByAccountId(user.accountId,false)

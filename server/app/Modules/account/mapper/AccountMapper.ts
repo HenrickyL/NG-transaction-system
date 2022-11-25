@@ -24,7 +24,9 @@ export class AccountMapper implements IMapper<IAccount, Account,AccountResponse>
   toResponse(entity: IAccount): AccountResponse {
     return {
       id: entity.id,
-      balance: entity.balance
+      balance: entity.balance,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt
     }
   }
 }

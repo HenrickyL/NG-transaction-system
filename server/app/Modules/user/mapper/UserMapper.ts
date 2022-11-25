@@ -43,6 +43,7 @@ export class UserMapper implements IMapper<IUser, User, UserResponse>{
     return {
       id: entity.id,
       username: entity.username,
+      accountId: entity.accountId,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt
     }

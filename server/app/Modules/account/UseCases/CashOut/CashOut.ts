@@ -27,27 +27,25 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
     if(currentAccount.balance < value){
       throw new CashOutInsufficientBalanceError(value);
     }
-    console.log('current: ',currentUser)
-
     //
     const cashInUser = await this.userRepository.findByUsername(cashInUsername)
     if(inSessionUserId == cashInUser.id){
       throw new CashOutYourselfAccountError();
     }
-    console.log('cashInUser: ',cashInUser)
-
     const cashInAccount = await this.accountRepository.findById(cashInUser.accountId)
     //
     const currentAccountResolved: IAccount = {
       ...currentAccount,
       balance: currentAccount.balance - value
     }
+
     const updatedCurrentAccount = await this.accountRepository.update(currentAccountResolved)
     //
     const cashInAccountResolved: IAccount = {
       ...cashInAccount,
       balance: cashInAccount.balance + value
     }
+
     try{
       const updatedCashInAccount = await this.accountRepository.update(cashInAccountResolved)
       const transactionData: ITransaction = {
@@ -62,6 +60,7 @@ export class CashOut implements IUseCase<AccountCashOutRequest, AccountCashOutRe
       }
     }catch(e){
       const reversedCurrentAccount = await this.accountRepository.update(currentAccount)
+      console.error(e)
       throw new CashOutInternalError(cashInUser.username)
     }
   }

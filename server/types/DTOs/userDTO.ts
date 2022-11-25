@@ -7,6 +7,7 @@ export type RegisterUserRequest = {
 export type UserResponse = {
   id: string
   username: string
+  accountId: string
   createdAt: Date
   updatedAt?: Date
 }

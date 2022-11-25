@@ -8,4 +8,6 @@ export interface IUsersRepository {
   create(user: IUser): Promise<IUser>
   findByUsername(username: string): Promise<IUser>
   findById(id: string, validate?:boolean): Promise<IUser>
+  findByAccountId(accountId: string): Promise<IUser | null>
+
 }

@@ -22,20 +22,11 @@ export class RegisterUser implements IUseCase<RegisterUserRequest, UserResponse>
       username: Username.create(username),
       password: Password.create(password)
     }
-    let user:IUser = await this.usersRepository.create(userData);
-    console.log('user: ',user)
     const accountData:IAccount = {
       balance: 100
     }
-    const account = await this.accountRepository.create(accountData)
-    console.log('user: ',user)
-    const userUpdated: IUser = {
-        ...user,
-        accountId: account.id,
-    }
-    console.log('userUpdated: ',userUpdated)
-
-    const res = await this.usersRepository.update(userUpdated)
+    const account = await this.accountRepository.createWithUser(userData,accountData, this.mapper);
+    const res = await this.usersRepository.findByAccountId(account.id)
     return this.mapper.toResponse(res)
   }
 }

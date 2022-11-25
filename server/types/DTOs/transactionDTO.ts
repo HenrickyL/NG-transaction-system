@@ -11,7 +11,7 @@ export type TransactionRequest = {
 
 
 
-export type GetTransactionResponse = {
+export type GetTransactionsResponse = {
   userId:  string
   username:  string
   credited: TransactionResponse[]

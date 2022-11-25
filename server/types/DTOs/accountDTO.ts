@@ -1,8 +1,9 @@
 
-import { AuthenticatedUserSessionsData } from './userDTO';
 export type AccountResponse = {
   id: string
   balance: number
+  createdAt: Date
+  updatedAt: Date
 }
 
 

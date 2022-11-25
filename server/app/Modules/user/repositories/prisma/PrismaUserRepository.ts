@@ -1,8 +1,7 @@
 import { prisma } from "@infra/prisma";
-import { IdNotBeNullError, UserAlreadyExistError, UsernameNotBeNullError, UsernameNotFound, UserNotFound } from "@modules/user/useCases/RegisterUser/errors";
+import { AccountNotFound, IdNotBeNullError, UserAlreadyExistError, UsernameNotBeNullError, UsernameNotFound, UserNotFound } from "@modules/user/useCases/RegisterUser/errors";
 import { UserMapper } from "@modules/user/mapper/UserMapper";
 import { IUser } from "types/entities";
-
 import { IUsersRepository } from "../IUsersRepository";
 
 export class PrismaUsersRepository implements IUsersRepository {
@@ -62,12 +61,26 @@ export class PrismaUsersRepository implements IUsersRepository {
   async findById(id: string, validate?:boolean): Promise<IUser> {
     const user = await prisma.user.findUnique({
       where: { id }, 
+      include:{
+        account:true
+      } 
     })
     if(!user && validate){
       throw new UserNotFound(id);
     }
     return this.mapper.toEntity(user)
+  }
 
+  async findByAccountId(accountId: string): Promise<IUser | null> {
+    const user = await prisma.user.findUnique({
+      where: { accountId }, 
+      include:{
+        account:true
+      } })
+    if(!user)
+      throw new AccountNotFound(accountId);
+      
+    return this.mapper.toEntity(user)
   }
 
   async findByUsername(username: string): Promise<IUser> {
