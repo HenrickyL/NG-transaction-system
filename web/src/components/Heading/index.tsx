@@ -3,14 +3,15 @@ import React, { ReactNode } from "react";
 import { HeadingSty } from "./style";
 
 export interface HeadingProps{
-    size? : 'sm' | 'md' | 'lg'
+    size? : 'sm' | 'md' | 'lg' | 'Lg' | 'LG'
     children: ReactNode;
-    isBold?:  boolean;
     color?:  string;
+    font?: 'inter' | 'poppins'
+
 }
 
-export function Heading({size,children, isBold, color}: HeadingProps){
-    function map(s?:'sm' | 'md' | 'lg'){
+export function Heading({size,children, color, font}: HeadingProps){
+    function map(s?:'sm' | 'md' | 'lg' | 'Lg' | 'LG'){
         switch (s) {
             case 'sm':
                 return 'lg'
@@ -18,12 +19,16 @@ export function Heading({size,children, isBold, color}: HeadingProps){
                 return 'xl'
             case 'lg':
                 return '2xl'
+            case 'Lg':
+                return '3xl'
+            case 'LG':
+                return '4xl'
             default:
                 return 'xl'
         }
     }
     return(
-        <HeadingSty size={map(size)} isBold={isBold} color={color}>
+        <HeadingSty size={map(size)}  color={color} font={font}> 
             {children}
         </HeadingSty>
     )

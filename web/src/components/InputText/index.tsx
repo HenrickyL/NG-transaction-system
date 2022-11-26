@@ -3,30 +3,35 @@ import { InputIconSty, InputRootSty, InputSty } from "./style";
 
 export interface InputTextRootProps{
     children: ReactNode
+    alert?: 'error' | 'warn' | 'info' | 'success' | 'other'
+    border?: string
+    shadow?: boolean
 }
 
-const InputTextRoot = ( {children}: InputTextRootProps)=>{
+const InputTextRoot = ( {alert,children, border, shadow}: InputTextRootProps)=>{
     return (
-        <InputRootSty > 
+        <InputRootSty alert={alert} border={border} shadow={shadow}> 
             {children}
         </InputRootSty>
     )
 }
 InputTextRoot.displayName = 'TextInput.Root'
+
 export interface InputTextIconProps{
     children: ReactNode
 }
 const InputTextIcon = ({children}: InputTextIconProps)=>{
     return(
         <InputIconSty>
-            {children}
+           <div>{children}</div>
         </InputIconSty>
     )
 }
-
 InputTextIcon.displayName = "TextInput.Icon"
 
-export interface InputTextInputProps extends InputHTMLAttributes<HTMLInputElement>{}
+export interface InputTextInputProps extends InputHTMLAttributes<HTMLInputElement>{
+    
+}
 const InputTextInput = (props: InputTextInputProps)=>{
     return(
         <InputSty {... props}/>

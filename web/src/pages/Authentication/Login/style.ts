@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SignInSty = styled.div`
+export const LoginSty = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ export const SignInSty = styled.div`
   gap: 1rem;
 `
 
-export const SignInFormSty = styled.form`
+export const LoginFormSty = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

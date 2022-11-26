@@ -14,5 +14,19 @@ body{
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  min-width: 100vw;
   background-color: #eff0f4;
+}
+
+input, button, select, textarea, optgroup{
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+a {
+  text-decoration: none; /* no underline */
 }

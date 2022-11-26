@@ -4,17 +4,17 @@ import { BtSty } from "./style";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     children: ReactNode;
-    asChield?:  boolean;
-    className?: string;
+    asChields?:  boolean;
+    drop?: boolean
+    color?: string
 }
 
-export function Button({children, asChield, className, ...rest}: ButtonProps){
-    const Comp = asChield ? Slot: BtSty
+export function Button({children, asChields, drop, color, ...rest}: ButtonProps){
+    const Comp = asChields ? Slot: BtSty
     return(
         <Comp
-        {...rest}
+        {...rest} drop={drop}  color={color}
         >
-
             {children}
         </Comp>
     )

@@ -1,6 +1,5 @@
 import styled,{keyframes} from 'styled-components'
 
-
 const lightAnimation = keyframes`
    0%{
     top: 18%;
@@ -61,11 +60,14 @@ const deformAnimation = (rgba?: string, isDefault:boolean = true)=>keyframes`
   }
 `
 
+
 interface DropProp{
   reverse?: boolean
   color?: string,
   coloRgbaLight?:string
   time?: string
+  click?: boolean
+  size?: 'sm' | 'md' | 'lg' | 'Lg'
 }
 
 export const Drop = styled.div<DropProp>`
@@ -73,8 +75,25 @@ export const Drop = styled.div<DropProp>`
   display: flex;
   flex-direction: column;
   position: relative;
-  width:21.875rem;
-  height:21.875rem;
+  ${p=>p.size ? 
+    p.size === 'sm'?
+      `width:10rem;
+      height:10rem;`:
+    p.size === 'md'?
+      `width:15rem;
+      height:15rem;`:
+    p.size === 'lg'?
+      `width:25rem;
+      height:25rem;`:
+    `width:30rem;
+    height:30rem;`
+  : 
+  `width:30rem;
+  height:30rem;`}
+  max-height: 30rem;
+  max-width: 30rem;
+  min-height: 10rem;
+  min-width: 10rem;
   box-shadow: inset 20px 20px 20px rgba(0,0,0,0.05),
                     25px 35px 20px rgba(0,0,0,0.05),
                     25px 30px 30px rgba(0,0,0,0.05),
@@ -91,6 +110,8 @@ export const Drop = styled.div<DropProp>`
   animation-duration: ${p=>p.time || '6s'};
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  
+  ${p=>p.click?``:`
   &:hover, &:focus{
     border-radius: 50%;
     animation: none;
@@ -103,7 +124,9 @@ export const Drop = styled.div<DropProp>`
     top: 27%;
     left: 31%;
     }
-  }
+  }`}
+  
+  
   &::before{
     content: '';
     position: absolute;
@@ -120,7 +143,7 @@ export const Drop = styled.div<DropProp>`
     animation-iteration-count: infinite;
     animation-timing-function: ease-in;
     box-shadow:  -8px -5px 15px rgba(255,255,255,0.7);;
-    filter: blur(3px);
+    filter: blur(2px);
 
   }
   &::after{
@@ -142,7 +165,7 @@ export const Drop = styled.div<DropProp>`
 
   }
 `
-export const Authorization = styled.div`
+export const Authorization = styled.nav`
   position:relative;
   display:flex;
   justify-content:center;
