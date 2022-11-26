@@ -1,24 +1,29 @@
 import React, { ReactNode } from "react";
-import {clsx} from 'clsx' 
-import {Slot} from '@radix-ui/react-slot'
+import { TextSty } from "./style";
+
 export interface TextProps{
     size? : 'sm' | 'md' | 'lg'
     children: ReactNode;
-    asChield?:  boolean;
-    className?: string;
+    isBold?:  boolean;
+    color?:  string;
 }
 
-export function Text({size='md',children, asChield, className}: TextProps){
-    const Comp = asChield ? Slot: 'span'
+export function Text({size,children, isBold, color}: TextProps){
+    function map(s?:'sm' | 'md' | 'lg'){
+        switch (s) {
+            case 'sm':
+                return 'xs'
+            case 'md':
+                return 'sm'
+            case 'lg':
+                return 'md'
+            default:
+                return 'sm'
+        }
+    }
     return(
-        <Comp className={clsx(
-            'text-gray-100 font-sans',
-            {
-                'text-xs': size === 'sm',
-                'text-sm': size === 'md',
-                'text-md': size === 'lg'
-            },
-            className
-        )}>{children}</Comp>
+        <TextSty size={map(size)} isBold={isBold} color={color}>
+            {children}
+        </TextSty>
     )
 }

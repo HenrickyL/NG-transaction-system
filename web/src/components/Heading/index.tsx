@@ -1,25 +1,30 @@
+import { Slot } from "@radix-ui/react-slot";
 import React, { ReactNode } from "react";
-import {clsx} from 'clsx' 
-import {Slot} from '@radix-ui/react-slot'
+import { HeadingSty } from "./style";
 
 export interface HeadingProps{
     size? : 'sm' | 'md' | 'lg'
     children: ReactNode;
-    asChield?:  boolean;
-    className?: string
+    isBold?:  boolean;
+    color?:  string;
 }
 
-export function Heading({size='md',children, asChield,className}: HeadingProps){
-    const Comp = asChield ? Slot: 'h2'
+export function Heading({size,children, isBold, color}: HeadingProps){
+    function map(s?:'sm' | 'md' | 'lg'){
+        switch (s) {
+            case 'sm':
+                return 'lg'
+            case 'md':
+                return 'xl'
+            case 'lg':
+                return '2xl'
+            default:
+                return 'xl'
+        }
+    }
     return(
-        <Comp className={clsx(
-            'text-gray-100 font-bold font-sans',
-            {
-                'text-lg': size === 'sm',
-                'text-xl': size === 'md',
-                'text-2xl': size === 'lg'
-            },
-            className
-        )}>{children}</Comp>
+        <HeadingSty size={map(size)} isBold={isBold} color={color}>
+            {children}
+        </HeadingSty>
     )
 }

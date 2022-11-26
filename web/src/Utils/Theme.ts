@@ -1,14 +1,14 @@
-export abstract class THEME{
-  static fontsize = {
-      xs:14,
-      sm:16,
-      md:18,
-      lg:20,
-      xl:24,
-      '2xl':32
-    }
-  static colors:{
-    trasparent:'transparent',
+export const THEME ={
+  fontsize: {
+      xs: '14px',
+      sm: '16px',
+      md: '18px',
+      lg: '20px',
+      xl: '24px',
+      '2xl': '32px'
+    },
+  colors:{
+    transparent:'transparent',
     black: '#000',
     white: '#fff',
     gray:{
@@ -18,13 +18,16 @@ export abstract class THEME{
       800: '#202024',
       900: '#121214',
     },
-    cyan:{
+    primary:{
+      300: '#98e1f8',
+      500: '#81d8f7',
+    },
+    secondary:{
       300: '#98e1f8',
       500: '#81d8f7',
     }
-  }
-
-  static fonts:{
+  },
+  fonts:{
       sans: "Inter, sans-serif"
   }
 }

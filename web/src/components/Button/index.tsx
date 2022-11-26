@@ -1,5 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import {Slot} from '@radix-ui/react-slot'
+import { BtSty } from "./style";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     children: ReactNode;
@@ -8,18 +9,12 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
 export function Button({children, asChield, className, ...rest}: ButtonProps){
-    const Comp = asChield ? Slot: 'button'
+    const Comp = asChield ? Slot: BtSty
     return(
-        <Comp className={clsx(
-            `py-3 px-4 bg-cyan-500 rounded font-semibold text-black text-sm w-full 
-                transition-colors hover:bg-cyan-300 focus:right-2 ring-white`,
-            {
-                
-            },
-            className
-        ) }
+        <Comp
         {...rest}
         >
+
             {children}
         </Comp>
     )
