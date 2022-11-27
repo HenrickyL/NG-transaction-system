@@ -4,6 +4,7 @@ import {Lock} from 'phosphor-react/dist'
 import { useDrop } from "..";
 import { useEffect } from 'react';
 import { THEME } from './../../../Utils/Theme';
+import { VARIABLES } from "../../../Utils/Variables";
 
 
 
@@ -13,7 +14,7 @@ export const Login = ()=>{
 
   useEffect(()=>{
     setAnotherLink({
-      to: 'sign-in',
+      to: VARIABLES.urls.signIn,
       title: 'Sign In',
       color: THEME.colors.secondary[400]
     })
@@ -30,19 +31,25 @@ export const Login = ()=>{
       <LoginFormSty>
 
         <FieldGroup>
-          <Heading size="sm">Username</Heading>
+          <label htmlFor='username'>
+            <Heading size="sm">Username:</Heading>
+          </label>
+          
           <InputText.Root shadow>
-            <InputText.Input placeholder="JohnDee"/>
+            <InputText.Input id='username' placeholder="JohnDee"/>
           </InputText.Root>
         </FieldGroup>
 
         <FieldGroup >
-          <Heading size="sm">Password</Heading>
+          <label htmlFor='password'>
+            <Heading size="sm">Password:</Heading>
+          </label>
+
           <InputText.Root shadow>
             <InputText.Icon>
               <Lock />
             </InputText.Icon>
-            <InputText.Input placeholder="**********" type='password'/>
+            <InputText.Input id='password' placeholder="**********" type='password'/>
           </InputText.Root>
         </FieldGroup>
           <Button drop color={THEME.colors.primary[400]} onClick={(e)=>{handleClick(e)}}>Logar</Button>

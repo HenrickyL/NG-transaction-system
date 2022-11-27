@@ -16,11 +16,11 @@ export const BtSty = styled.button<BtStyProp>`
   font-weight: 600;
   font-size: ${THEME.fontsize.sm};
   width: 100%;
+  cursor: pointer;
   transition: 0.4s; 
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  border-color: rgb(255,255,255,0.5) ;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   ${
     p=>p.drop? `
       background: ${p.color? p.color : 'transparent'};
@@ -36,7 +36,7 @@ export const BtSty = styled.button<BtStyProp>`
     content: '';
     position: absolute;
     top: 8px;
-    left: 50%;
+    left: 45%;
     transform: translateX(-50%);
     width: 65%;
     height: 5px;
@@ -45,24 +45,26 @@ export const BtSty = styled.button<BtStyProp>`
   }
 
   &:hover{
-  ${
-    p=>p.drop? `
-      background: ${THEME.colors.primary[500]};
-    `: 'background-color: ${THEME.colors.primary[300]};'
-    
-  }
-    border: 1px solid rgb(100,100,100,0.5);
+    ${
+      p=>p.drop? `
+        background: ${THEME.colors.primary[500]};
+      `: 'background-color: ${THEME.colors.primary[300]};'
+      
+    }
+    border: 2px solid rgb(100,100,100,0.5);
     &::before{
       transition: 0.5s; 
       content: '';
       position: absolute;
-      top: 7px;
-      left: 48%;
+      top: 9px;
+      left: 43%;
     }
   }
   &:focus{
-    transition: 0.5s; 
+    border: 2px solid rgb(0,0,0,0.7);
+  }
+  &:active{
+    transition: 0.2s; 
     width: 65%;
-    border: -1px solid rgb(0,0,0,0.7);
   }
 `

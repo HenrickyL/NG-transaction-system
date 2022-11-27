@@ -20,6 +20,7 @@ body{
 
 input, button, select, textarea, optgroup{
   border:none;
+  outline: 0;
   background-image:none;
   background-color:transparent;
   -webkit-box-shadow: none;

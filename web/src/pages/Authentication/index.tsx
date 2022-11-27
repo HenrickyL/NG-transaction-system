@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useOutletContext } from "react-router-dom";
-import { Authorization, Drop } from "./style"
+import { AuthorizationSty, Drop } from "./style"
 import { useEffect, useState } from "react";
 import {Heading} from '../../components'
 import { THEME } from './../../Utils/Theme';
@@ -41,18 +41,18 @@ export const AuthenticationPage = ()=>{
     }
   },[duration])
   return(
-    <Authorization>
-      <Drop  time={duration}>
+    <AuthorizationSty>
+      <Drop  time={duration} main>
         <Outlet context={{setAnotherLink, setClick, click,setOtherTab}}/>
       </Drop>
 
-      <Drop size="sm" color={anotherLink.color}>
-        <NavLink to={anotherLink.to}>
-          <Heading size="lg">{anotherLink.title}</Heading>
-        </NavLink>
-      </Drop>
+      <NavLink to={anotherLink.to}>
+        <Drop size="sm" color={anotherLink.color}>
+            <Heading size="lg">{anotherLink.title}</Heading>
+        </Drop>
+      </NavLink>
 
-    </Authorization>
+    </AuthorizationSty>
   )
 }
 

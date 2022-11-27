@@ -35,10 +35,6 @@ const deformAnimation = (rgba?: string, isDefault:boolean = true)=>keyframes`
   0%{
     border-radius: ${isDefault?'52% 48% 33% 67% / 38% 45% 55% 62% ': 
     '41% 59% 58% 42% / 54% 58% 42% 46%' };
-    box-shadow: inset 20px 20px 20px rgba(0,0,0,0.05),
-                    25px 35px 20px rgba(0,0,0,0.05),
-                    25px 30px 30px rgba(0,0,0,0.05),
-              inset -20px -20px 25px ${rgba || 'rgba(255,255,255,0.9)'};
   }
   
   50%{
@@ -53,10 +49,6 @@ const deformAnimation = (rgba?: string, isDefault:boolean = true)=>keyframes`
   100%{
     border-radius: ${isDefault?'52% 48% 33% 67% / 38% 45% 55% 62% ': 
     '41% 59% 58% 42% / 54% 58% 42% 46%' };
-    box-shadow: inset 20px 20px 20px rgba(0,0,0,0.05),
-                    25px 35px 20px rgba(0,0,0,0.05),
-                    25px 30px 30px rgba(0,0,0,0.05),
-              inset -20px -20px 25px ${rgba || 'rgba(255,255,255,0.9)'};
   }
 `
 
@@ -68,6 +60,7 @@ interface DropProp{
   time?: string
   click?: boolean
   size?: 'sm' | 'md' | 'lg' | 'Lg'
+  main?: boolean
 }
 
 export const Drop = styled.div<DropProp>`
@@ -94,7 +87,7 @@ export const Drop = styled.div<DropProp>`
   max-width: 30rem;
   min-height: 10rem;
   min-width: 10rem;
-  box-shadow: inset 20px 20px 20px rgba(0,0,0,0.05),
+  box-shadow: inset 25px 25px 20px rgba(0,0,0,0.1),
                     25px 35px 20px rgba(0,0,0,0.05),
                     25px 30px 30px rgba(0,0,0,0.05),
               inset -20px -20px 25px ${p=>p.coloRgbaLight || 'rgba(255,255,255,0.9)'};
@@ -104,27 +97,36 @@ export const Drop = styled.div<DropProp>`
   align-items: center;
   /* border-radius:52% 48% 33% 67% / 38% 45% 55% 62% ; */
   border-radius: ${p=>p.reverse?'41% 59% 58% 42% / 54% 58% 42% 46%':
-  '52% 48% 33% 67% / 38% 45% 55% 62% ' 
-     };
+    '52% 48% 33% 67% / 38% 45% 55% 62% ' };
   animation-name: ${p=>deformAnimation(p.coloRgbaLight,!p.reverse)};
   animation-duration: ${p=>p.time || '6s'};
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  filter: blur(0.5px);
+
   
-  ${p=>p.click?``:`
   &:hover, &:focus{
-    border-radius: 50%;
-    animation: none;
     &::before{
       top: 18%;
       left: 22%;
     }
     &::after{
-    content: '';
-    top: 27%;
-    left: 31%;
+      content: '';
+      top: 27%;
+      left: 31%;
     }
-  }`}
+    filter: blur(0) contrast(1);
+
+    box-shadow: inset 30px 30px 20px rgba(0,0,0,0.18),
+                    25px 35px 20px rgba(0,0,0,0.15),
+                    25px 30px 30px rgba(0,0,0,0.15),
+              inset -20px -20px 25px ${p=>p.coloRgbaLight || 'rgba(255,255,255,0.9)'};
+    ${p=>p.main?``:`
+      transition: 0.5s;
+      border-radius: 50%;
+      animation: none;
+    `}
+  }
   
   
   &::before{
@@ -135,14 +137,14 @@ export const Drop = styled.div<DropProp>`
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background-color: rgba(255,255,255,0.65);
+    background-color: rgba(255,255,255,0.7);
     opacity: 0.9;
     transition: 0.3s;
     animation-name: ${lightAnimation};
-    animation-duration: ${p=>p.time || '6s'};
+    animation-duration: ${p=>p.time || '5s'};
     animation-iteration-count: infinite;
-    animation-timing-function: ease-in;
-    box-shadow:  -8px -5px 15px rgba(255,255,255,0.7);;
+    animation-timing-function: ease-in-out;
+    box-shadow:  -8px -5px 12px rgba(255,255,255,0.7);;
     filter: blur(2px);
 
   }
@@ -162,12 +164,16 @@ export const Drop = styled.div<DropProp>`
     animation-iteration-count: infinite;
     animation-timing-function: ease-in;
     filter: blur(4px);
-
   }
 `
-export const Authorization = styled.nav`
+
+
+
+export const AuthorizationSty = styled.nav`
   position:relative;
   display:flex;
   justify-content:center;
   align-items:center ;
+  gap: 1rem;
+  
 `
