@@ -20,11 +20,15 @@ export const InputRootSty = styled.label<inputRootProp>`
   p.border? p.border : 'transparent'} ;
   box-shadow:  ${p=>p.shadow? THEME.boxShadow: 'transparent'};
   transition: 0.4s;
+  filter: brightness(0.9);
   &:hover{
     border: 2px solid rgba(100,100,100,0.2);
+    filter: brightness(1);
   }
   &:focus-within{
     border: 2px solid rgba(0,0,0,0.7);
+    background-color: white;
+    filter: brightness(1);
   }
 `
 
@@ -53,6 +57,9 @@ export const InputSty = styled.input<InputStyProps>`
   font-size: 0.9rem;
   line-height: 1rem;
   width: inherit;
+  &:focus{
+    color: black;
+  }
   ::placeholder {
        color: ${THEME.colors.gray[200]};
    }

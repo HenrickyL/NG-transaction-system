@@ -58,7 +58,7 @@ interface DropProp{
   color?: string,
   coloRgbaLight?:string
   time?: string
-  click?: boolean
+  light?: 'l' | 'm' | 'r'
   size?: 'sm' | 'md' | 'lg' | 'Lg'
   main?: boolean
 }

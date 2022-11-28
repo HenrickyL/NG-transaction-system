@@ -39,23 +39,23 @@ services:
         - DATABASE_URL=${DATABASE_URL}
    
 
-    web:
-      container_name: 'web'
-      restart: always
-      stdin_open: true
-      build:
-        context: ./web
-        dockerfile: Dockerfile.dev
-      ports:
-        - '${WEB_PORT}:${WEB_PORT}'
-      command: npm start
-      depends_on:
-        - postgres
-        - api
-      environment:
-        - PORT = ${WEB_PORT}
-        - DOMAIN = api
-        - APP_SECRET= ${APP_SECRET}
+    # web:
+    #   container_name: 'web'
+    #   restart: always
+    #   stdin_open: true
+    #   build:
+    #     context: ./web
+    #     dockerfile: Dockerfile.dev
+    #   ports:
+    #     - '${WEB_PORT}:${WEB_PORT}'
+    #   command: npm start
+    #   depends_on:
+    #     - postgres
+    #     - api
+    #   environment:
+    #     - PORT = ${WEB_PORT}
+    #     - DOMAIN = api
+    #     - APP_SECRET= ${APP_SECRET}
 
 
 
