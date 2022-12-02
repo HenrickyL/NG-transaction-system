@@ -30,15 +30,17 @@ export const AuthenticationPage = ()=>{
 
   useEffect(()=>{
     const time = Number(duration.slice(0,-1))
+    let timer: NodeJS.Timeout;
     if(time< 2){
-      setTimeout(() => {
+      timer = setTimeout(() => {
         setDuration(`${time+0.5}s`)
         console.log(time)
       }, 2500);
     }else{
       setDuration('6s')
-
     }
+
+    return ()=>clearTimeout(timer)
   },[duration])
   return(
     <AuthorizationSty>
